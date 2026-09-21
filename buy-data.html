@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Buy MTN Data - QuickTopUp</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0d0d0d;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            width: 100%;
+            padding: 20px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .logo {
+            color: #229797;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .back-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.8;
+            transition: 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: #229797;
+            opacity: 1;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 760px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: #151515;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 38px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+        }
+
+        .header {
+            margin-bottom: 32px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(34, 151, 151, 0.12);
+            border: 1px solid rgba(34, 151, 151, 0.25);
+            color: #51d2d2;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-size: 38px;
+            line-height: 1.1;
+            margin-bottom: 11px;
+            letter-spacing: -1px;
+        }
+
+        .header p {
+            color: #a9a9a9;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .label {
+            display: block;
+            margin-bottom: 11px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        /* NETWORK */
+
+        .network-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .network-button {
+            position: relative;
+            z-index: 20;
+
+            width: 100%;
+            min-height: 58px;
+
+            border: 2px solid #2d2d2d;
+            background: #1d1d1d;
+            color: #ffffff;
+
+            border-radius: 14px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                border-color 0.2s ease,
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .network-button:hover {
+            border-color: #229797;
+            transform: translateY(-2px);
+        }
+
+        .network-button.selected {
+            background: #229797;
+            border-color: #229797;
+            color: #ffffff;
+            box-shadow:
+                0 10px 25px rgba(34, 151, 151, 0.22);
+        }
+
+        /* INPUT */
+
+        .input,
+        .select {
+            width: 100%;
+
+            padding: 16px;
+
+            background: #0f0f0f;
+            color: #ffffff;
+
+            border: 1px solid #333333;
+            border-radius: 13px;
+
+            outline: none;
+
+            font-size: 15px;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .input::placeholder {
+            color: #666666;
+        }
+
+        .input:focus,
+        .select:focus {
+            border-color: #229797;
+            box-shadow:
+                0 0 0 3px rgba(34, 151, 151, 0.10);
+        }
+
+        .select option {
+            background: #151515;
+            color: #ffffff;
+        }
+
+        /* PLAN INFO */
+
+        .plan-info {
+            margin-top: 12px;
+
+            padding: 14px 16px;
+
+            border-radius: 13px;
+
+            background: rgba(255, 255, 255, 0.035);
+
+            border: 1px solid rgba(255, 255, 255, 0.06);
+
+            color: #aaaaaa;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+        .plan-info strong {
+            color: #ffffff;
+        }
+
+        /* BUTTON */
+
+        .buy-button {
+            width: 100%;
+
+            margin-top: 8px;
+
+            padding: 17px;
+
+            border: none;
+            border-radius: 14px;
+
+            background: #229797;
+            color: #ffffff;
+
+            font-size: 16px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                opacity 0.2s ease;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 30px rgba(34, 151, 151, 0.25);
+        }
+
+        .buy-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* MESSAGE */
+
+        .data-message {
+            display: none;
+
+            margin-top: 18px;
+
+            padding: 14px 16px;
+
+            border-radius: 13px;
+
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .data-message.info {
+            display: block;
+
+            background: rgba(255, 255, 255, 0.05);
+            color: #dddddd;
+        }
+
+        .data-message.success {
+            display: block;
+
+            background: rgba(34, 151, 151, 0.12);
+            color: #5fe0e0;
+        }
+
+        .data-message.error {
+            display: block;
+
+            background: rgba(255, 70, 70, 0.10);
+            color: #ff9999;
+        }
+
+        /* NOTE */
+
+        .note {
+            margin-top: 20px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+
+            color: #707070;
+
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+
+            color: #666666;
+
+            font-size: 13px;
+
+            padding: 5px 20px 40px;
+        }
+
+        @media (max-width: 650px) {
+
+            .page {
+                margin: 30px auto;
+            }
+
+            .card {
+                padding: 25px 20px;
+                border-radius: 20px;
+            }
+
+            .header h1 {
+                font-size: 31px;
+            }
+
+            .network-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 400px) {
+
+            .network-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 9px;
+            }
+
+            .network-button {
+                min-height: 54px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a
+            href="dashboard.html"
+            class="logo"
+        >
+            QuickTopUp
+        </a>
+
+        <a
+            href="dashboard.html"
+            class="back-link"
+        >
+            ← Dashboard
+        </a>
+
+    </nav>
+
+
+    <!-- PAGE -->
+
+    <main class="page">
+
+        <div class="card">
+
+            <!-- HEADER -->
+
+            <div class="header">
+
+                <div class="badge">
+                    MTN TEST DATA
+                </div>
+
+                <h1>
+                    Buy Data
+                </h1>
+
+                <p>
+                    Select MTN, enter the recipient's
+                    phone number, choose a data plan,
+                    and continue securely.
+                </p>
+
+            </div>
+
+
+            <!-- NETWORK -->
+
+            <div class="section">
+
+                <label class="label">
+                    Select Network
+                </label>
+
+                <div class="network-grid">
+
+                    <!-- MTN -->
+
+                    <button
+                        type="button"
+                        class="network-button selected"
+                        data-network="MTN"
+                        data-service-id="149"
+                    >
+                        MTN
+                    </button>
+
+
+                    <!-- Airtel -->
+
+                    <button
+                        type="button"
+                        class="network-button"
+                        data-network="AIRTEL"
+                        disabled
+                        title="Airtel will be added after its VTUGATE test plans are retrieved."
+                    >
+                        Airtel
+                    </button>
+
+
+                    <!-- Glo -->
+
+                    <button
+                        type="button"
+                        class="network-button"
+                        data-network="GLO"
+                        disabled
+                        title="Glo will be added after its VTUGATE test plans are retrieved."
+                    >
+                        Glo
+                    </button>
+
+
+                    <!-- 9mobile -->
+
+                    <button
+                        type="button"
+                        class="network-button"
+                        data-network="9MOBILE"
+                        disabled
+                        title="9mobile will be added after its VTUGATE test plans are retrieved."
+                    >
+                        9mobile
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="section">
+
+                <label
+                    for="phone"
+                    class="label"
+                >
+                    Recipient Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    class="input"
+                    placeholder="08011111111"
+                    maxlength="11"
+                    inputmode="numeric"
+                    autocomplete="tel"
+                >
+
+            </div>
+
+
+            <!-- DATA PLAN -->
+
+            <div class="section">
+
+                <label
+                    for="dataPlan"
+                    class="label"
+                >
+                    Select MTN Data Plan
+                </label>
+
+                <select
+                    id="dataPlan"
+                    class="select"
+                >
+
+                    <option value="">
+                        Select a data plan
+                    </option>
+
+
+                    <!-- REAL VTUGATE SANDBOX PLAN -->
+
+                    <option
+                        value="sandbox-1gb"
+                        data-plan-code="sandbox-1gb"
+                        data-service-id="149"
+                        data-price="350"
+                        data-size="1000"
+                        data-validity="30"
+                    >
+                        MTN 1GB - ₦350 - 30 days
+                    </option>
+
+
+                    <!-- REAL VTUGATE SANDBOX PLAN -->
+
+                    <option
+                        value="sandbox-2gb"
+                        data-plan-code="sandbox-2gb"
+                        data-service-id="149"
+                        data-price="700"
+                        data-size="2000"
+                        data-validity="30"
+                    >
+                        MTN 2GB - ₦700 - 30 days
+                    </option>
+
+
+                    <!-- REAL VTUGATE SANDBOX PLAN -->
+
+                    <option
+                        value="sandbox-5gb"
+                        data-plan-code="sandbox-5gb"
+                        data-service-id="203"
+                        data-price="1500"
+                        data-size="5000"
+                        data-validity="30"
+                    >
+                        MTN 5GB - ₦1,500 - 30 days
+                    </option>
+
+                </select>
+
+
+                <div
+                    id="planInfo"
+                    class="plan-info"
+                >
+                    Select a plan to view its details.
+                </div>
+
+            </div>
+
+
+            <!-- CONTINUE -->
+
+            <button
+                type="button"
+                id="buyDataButton"
+                class="buy-button"
+            >
+                Continue
+            </button>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                id="dataMessage"
+                class="data-message"
+            ></div>
+
+
+            <!-- NOTE -->
+
+            <div class="note">
+
+                Test plans are currently connected
+                to VTUGATE sandbox mode. Live purchasing
+                will be enabled only after the complete
+                test flow is working.
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        QuickTopUp © 2026. All rights reserved.
+
+    </footer>
+
+
+    <!-- PLAN DISPLAY -->
+
+    <script>
+
+        const dataPlan =
+            document.getElementById(
+                "dataPlan"
+            );
+
+        const planInfo =
+            document.getElementById(
+                "planInfo"
+            );
+
+        dataPlan.addEventListener(
+            "change",
+            function () {
+
+                const option =
+                    this.options[
+                        this.selectedIndex
+                    ];
+
+                if (
+                    !option.value
+                ) {
+
+                    planInfo.innerHTML =
+                        "Select a plan to view its details.";
+
+                    return;
+                }
+
+                const code =
+                    option.dataset.planCode;
+
+                const serviceId =
+                    option.dataset.serviceId;
+
+                const price =
+                    option.dataset.price;
+
+                const size =
+                    option.dataset.size;
+
+                const validity =
+                    option.dataset.validity;
+
+                planInfo.innerHTML =
+
+                    `<strong>Plan:</strong> ${size / 1000}GB &nbsp; | &nbsp; ` +
+                    `<strong>Price:</strong> ₦${Number(price).toLocaleString()} &nbsp; | &nbsp; ` +
+                    `<strong>Validity:</strong> ${validity} days &nbsp; | &nbsp; ` +
+                    `<strong>Service ID:</strong> ${serviceId} &nbsp; | &nbsp; ` +
+                    `<strong>Code:</strong> ${code}`;
+
+            }
+        );
+
+    </script>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

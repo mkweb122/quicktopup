@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>QuickTopUp - Airtime</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #071313;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 30px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 550px;
+            margin: auto;
+        }
+
+        .card {
+            background: #101d1d;
+            border: 1px solid #284141;
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .version {
+            color: #229797;
+            font-size: 12px;
+            margin-bottom: 25px;
+        }
+
+        .balance {
+            background: #0b2929;
+            border: 1px solid #229797;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 25px;
+        }
+
+        .balance small {
+            display: block;
+            color: #91aaaa;
+            margin-bottom: 5px;
+        }
+
+        .balance strong {
+            font-size: 24px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .networks {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .network {
+            padding: 14px 5px;
+            background: #142222;
+            color: white;
+            border: 1px solid #304747;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .network.active {
+            background: #229797;
+            border-color: #229797;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            background: #0b1515;
+            color: white;
+            border: 1px solid #304747;
+            border-radius: 10px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        input:focus {
+            border-color: #229797;
+        }
+
+        .field {
+            margin-bottom: 22px;
+        }
+
+        .quick {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .quick button {
+            padding: 11px 5px;
+            background: #142222;
+            color: white;
+            border: 1px solid #304747;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        .quick button:hover {
+            border-color: #229797;
+        }
+
+        #buyButton {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            background: #229797;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #buyButton:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+        #message {
+            min-height: 25px;
+            margin-top: 15px;
+            color: #8ee0e0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 600px) {
+
+            .networks {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .quick {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .card {
+                padding: 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>
+                Buy Airtime
+            </h1>
+
+            <div class="version">
+                QUICKTOPUP AIRTIME TEST — NEW PAGE
+            </div>
+
+
+            <div class="balance">
+
+                <small>
+                    Wallet Balance
+                </small>
+
+                <strong id="balance">
+                    ₦0.00
+                </strong>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Select Network
+                </label>
+
+                <div class="networks">
+
+                    <button
+                        type="button"
+                        class="network active"
+                        data-network="MTN"
+                    >
+                        MTN
+                    </button>
+
+                    <button
+                        type="button"
+                        class="network"
+                        data-network="AIRTEL"
+                    >
+                        Airtel
+                    </button>
+
+                    <button
+                        type="button"
+                        class="network"
+                        data-network="GLO"
+                    >
+                        Glo
+                    </button>
+
+                    <button
+                        type="button"
+                        class="network"
+                        data-network="9MOBILE"
+                    >
+                        9mobile
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="09136642435"
+                    inputmode="numeric"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="amount">
+                    Airtime Amount
+                </label>
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="100"
+                    min="50"
+                    step="50"
+                    inputmode="numeric"
+                >
+
+                <div class="quick">
+
+                    <button
+                        type="button"
+                        data-value="100"
+                    >
+                        ₦100
+                    </button>
+
+                    <button
+                        type="button"
+                        data-value="200"
+                    >
+                        ₦200
+                    </button>
+
+                    <button
+                        type="button"
+                        data-value="500"
+                    >
+                        ₦500
+                    </button>
+
+                    <button
+                        type="button"
+                        data-value="1000"
+                    >
+                        ₦1,000
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="buyButton"
+            >
+                Buy Airtime
+            </button>
+
+
+            <div id="message"></div>
+
+        </div>
+
+    </div>
+
+
+<script>
+
+    const BACKEND_URL =
+        "http://localhost:3000";
+
+
+    const USER_KEY =
+        "quickTopUpCurrentUser";
+
+
+    let selectedNetwork =
+        "MTN";
+
+
+    const networkButtons =
+        document.querySelectorAll(
+            ".network"
+        );
+
+
+    const phoneInput =
+        document.getElementById(
+            "phone"
+        );
+
+
+    const amountInput =
+        document.getElementById(
+            "amount"
+        );
+
+
+    const buyButton =
+        document.getElementById(
+            "buyButton"
+        );
+
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    const balanceElement =
+        document.getElementById(
+            "balance"
+        );
+
+
+    function getUser() {
+
+        try {
+
+            return JSON.parse(
+                localStorage.getItem(
+                    USER_KEY
+                )
+            );
+
+        } catch {
+
+            return null;
+
+        }
+
+    }
+
+
+    function money(value) {
+
+        return "₦" +
+            Number(
+                value || 0
+            ).toLocaleString(
+                "en-NG",
+                {
+                    minimumFractionDigits: 2
+                }
+            );
+
+    }
+
+
+    function showMessage(text) {
+
+        message.textContent =
+            text;
+
+    }
+
+
+    // ========================================================
+    // NETWORK
+    // ========================================================
+
+    networkButtons.forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    networkButtons.forEach(
+                        item => {
+
+                            item.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
+
+                    button.classList.add(
+                        "active"
+                    );
+
+                    selectedNetwork =
+                        button.dataset.network;
+
+                    console.log(
+                        "NETWORK:",
+                        selectedNetwork
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    // ========================================================
+    // QUICK AMOUNT
+    // ========================================================
+
+    document
+        .querySelectorAll(
+            "[data-value]"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        amountInput.value =
+                            button.dataset.value;
+
+                    }
+                );
+
+            }
+        );
+
+
+    // ========================================================
+    // LOAD WALLET
+    // ========================================================
+
+    async function loadWallet() {
+
+        const user =
+            getUser();
+
+
+        if (!user) {
+
+            showMessage(
+                "Please login first."
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `${BACKEND_URL}/api/wallet/${user.id}`
+                );
+
+
+            const result =
+                await response.json();
+
+
+            console.log(
+                "WALLET:",
+                result
+            );
+
+
+            if (
+                !response.ok ||
+                !result.success
+            ) {
+
+                throw new Error(
+                    result.message ||
+                    "Wallet could not be loaded."
+                );
+
+            }
+
+
+            balanceElement.textContent =
+                money(
+                    result.balance
+                );
+
+        } catch (error) {
+
+            console.error(
+                error
+            );
+
+            showMessage(
+                error.message
+            );
+
+        }
+
+    }
+
+
+    // ========================================================
+    // BUY AIRTIME
+    // ========================================================
+
+    buyButton.addEventListener(
+        "click",
+        async () => {
+
+            console.log(
+                "BUY AIRTIME BUTTON CLICKED"
+            );
+
+
+            const user =
+                getUser();
+
+
+            if (!user) {
+
+                showMessage(
+                    "Please login first."
+                );
+
+                return;
+
+            }
+
+
+            const phone =
+                phoneInput.value
+                    .trim()
+                    .replace(/\s+/g, "");
+
+
+            console.log(
+                "PHONE:",
+                phone
+            );
+
+
+            if (!phone) {
+
+                showMessage(
+                    "Please enter the phone number."
+                );
+
+                return;
+
+            }
+
+
+            let finalPhone =
+                phone;
+
+
+            if (
+                finalPhone.startsWith(
+                    "+234"
+                )
+            ) {
+
+                finalPhone =
+                    "0" +
+                    finalPhone.slice(4);
+
+            }
+
+
+            if (
+                finalPhone.startsWith("234") &&
+                finalPhone.length === 13
+            ) {
+
+                finalPhone =
+                    "0" +
+                    finalPhone.slice(3);
+
+            }
+
+
+            if (
+                !/^0\d{10}$/.test(
+                    finalPhone
+                )
+            ) {
+
+                showMessage(
+                    "Please enter a valid Nigerian phone number."
+                );
+
+                return;
+
+            }
+
+
+            const amount =
+                Number(
+                    amountInput.value
+                );
+
+
+            if (
+                !amount ||
+                amount < 50
+            ) {
+
+                showMessage(
+                    "Minimum airtime amount is ₦50."
+                );
+
+                return;
+
+            }
+
+
+            buyButton.disabled =
+                true;
+
+            buyButton.textContent =
+                "Processing...";
+
+
+            showMessage(
+                "Processing airtime purchase..."
+            );
+
+
+            try {
+
+                const walletResponse =
+                    await fetch(
+                        `${BACKEND_URL}/api/wallet/${user.id}`
+                    );
+
+
+                const wallet =
+                    await walletResponse.json();
+
+
+                if (
+                    !walletResponse.ok ||
+                    !wallet.success
+                ) {
+
+                    throw new Error(
+                        wallet.message ||
+                        "Could not check wallet."
+                    );
+
+                }
+
+
+                const serverBalance =
+                    Number(
+                        wallet.balance || 0
+                    );
+
+
+                console.log(
+                    "SERVER BALANCE:",
+                    serverBalance
+                );
+
+
+                if (
+                    serverBalance < amount
+                ) {
+
+                    throw new Error(
+                        `Insufficient wallet balance. Your balance is ${money(serverBalance)}.`
+                    );
+
+                }
+
+
+                // =================================================
+                // SEND REQUEST
+                // =================================================
+
+                const response =
+                    await fetch(
+                        `${BACKEND_URL}/api/buy-airtime`,
+                        {
+
+                            method:
+                                "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify({
+
+                                    userId:
+                                        String(user.id),
+
+                                    network:
+                                        selectedNetwork,
+
+                                    phone:
+                                        finalPhone,
+
+                                    amount:
+                                        amount
+
+                                })
+
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                console.log(
+                    "SERVER RESPONSE:",
+                    result
+                );
+
+
+                if (
+                    !response.ok ||
+                    !result.success
+                ) {
+
+                    throw new Error(
+                        result.message ||
+                        "Airtime purchase failed."
+                    );
+
+                }
+
+
+                balanceElement.textContent =
+                    money(
+                        result.balance
+                    );
+
+
+                showMessage(
+                    result.message ||
+                    "Airtime purchased successfully!"
+                );
+
+
+                amountInput.value =
+                    "";
+
+
+            } catch (error) {
+
+                console.error(
+                    "AIRTIME ERROR:",
+                    error
+                );
+
+
+                showMessage(
+                    error.message
+                );
+
+            } finally {
+
+                buyButton.disabled =
+                    false;
+
+                buyButton.textContent =
+                    "Buy Airtime";
+
+            }
+
+        }
+    );
+
+
+    loadWallet();
+
+</script>
+
+</body>
+
+</html>

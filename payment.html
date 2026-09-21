@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Payment | QuickTopUp</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .payment-page {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        .payment-card {
+            width: 100%;
+            max-width: 560px;
+            background: #151515;
+            border: 1px solid #292929;
+            border-radius: 24px;
+            padding: 42px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+        }
+
+        .payment-badge {
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(34, 151, 151, 0.14);
+            border: 1px solid rgba(34, 151, 151, 0.3);
+            border-radius: 18px;
+            font-size: 28px;
+            margin-bottom: 22px;
+        }
+
+        .payment-card h1 {
+            font-size: 34px;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .payment-description {
+            color: #999;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .payment-summary {
+            background: #0d0d0d;
+            border: 1px solid #292929;
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 25px;
+        }
+
+        .payment-summary-label {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .payment-amount {
+            color: #229797;
+            font-size: 32px;
+            font-weight: 800;
+        }
+
+        .payment-form-group {
+            margin-bottom: 22px;
+        }
+
+        .payment-form-group label {
+            display: block;
+            margin-bottom: 9px;
+            font-weight: 600;
+        }
+
+        .payment-form-group input {
+            width: 100%;
+            padding: 16px;
+            background: #0d0d0d;
+            border: 1px solid #333;
+            border-radius: 12px;
+            outline: none;
+            color: white;
+            font-size: 16px;
+        }
+
+        .payment-form-group input:focus {
+            border-color: #229797;
+        }
+
+        .pay-button {
+            width: 100%;
+            padding: 17px;
+            border: none;
+            border-radius: 12px;
+            background: #229797;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .pay-button:hover {
+            background: #27aaaa;
+            transform: translateY(-1px);
+        }
+
+        .pay-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .payment-message {
+            min-height: 20px;
+            margin: 12px 0;
+            font-size: 14px;
+        }
+
+        .secure-payment {
+            text-align: center;
+            color: #777;
+            font-size: 13px;
+            margin-top: 18px;
+        }
+
+        .back-payment {
+            display: inline-block;
+            margin-top: 25px;
+            color: #229797;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-payment:hover {
+            text-decoration: underline;
+        }
+
+        .payment-footer {
+            text-align: center;
+            margin-top: 35px;
+            color: #777;
+            font-size: 13px;
+        }
+
+        .payment-footer strong {
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+
+            .payment-card {
+                padding: 28px 20px;
+            }
+
+            .payment-card h1 {
+                font-size: 27px;
+            }
+
+            .payment-amount {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="topbar">
+
+        <div class="logo">
+            Quick<span>TopUp</span>
+        </div>
+
+        <a href="dashboard.html" class="back-link">
+            Dashboard
+        </a>
+
+    </header>
+
+
+    <main class="payment-page">
+
+        <div class="payment-card">
+
+            <div class="payment-badge">
+                💳
+            </div>
+
+            <h1>
+                Complete Your Payment
+            </h1>
+
+            <p class="payment-description">
+                Review your wallet funding amount and
+                continue securely with Paystack.
+            </p>
+
+
+            <div class="payment-summary">
+
+                <div class="payment-summary-label">
+                    Wallet Funding
+                </div>
+
+                <div class="payment-amount">
+                    <span id="paymentAmount">
+                        ₦0.00
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="payment-form-group">
+
+                <label for="paymentEmail">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="paymentEmail"
+                    placeholder="Enter your email address"
+                >
+
+            </div>
+
+
+            <p
+                id="paymentMessage"
+                class="payment-message"
+            ></p>
+
+
+            <button
+                type="button"
+                id="payButton"
+                class="pay-button"
+            >
+                Pay with Paystack
+            </button>
+
+
+            <div class="secure-payment">
+                🔒 Your payment is securely processed by Paystack.
+            </div>
+
+
+            <a
+                href="fund-wallet.html"
+                class="back-payment"
+            >
+                ← Back to Fund Wallet
+            </a>
+
+
+            <div class="payment-footer">
+
+                <strong>
+                    QuickTopUp
+                </strong>
+
+                <br>
+
+                Simple, fast and convenient digital services.
+
+                <br><br>
+
+                © 2026 QuickTopUp. All rights reserved.
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Paystack -->
+    <script src="https://js.paystack.co/v2/inline.js"></script>
+
+    <!-- QuickTopUp JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>

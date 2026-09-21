@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | QuickTopUp</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .dashboard-page {
+            min-height: calc(100vh - 80px);
+            padding: 45px 6%;
+        }
+
+        .dashboard-header {
+            margin-bottom: 35px;
+        }
+
+        .dashboard-header h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .dashboard-header p {
+            color: #999;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 25px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .dashboard-card {
+            background: #151515;
+            border: 1px solid #292929;
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+        }
+
+        .balance-card {
+            background:
+                linear-gradient(
+                    135deg,
+                    #151515,
+                    #102626
+                );
+
+            border-color: rgba(34, 151, 151, 0.35);
+        }
+
+        .card-label {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .balance {
+            font-size: 42px;
+            font-weight: 800;
+            color: #229797;
+            margin-bottom: 25px;
+        }
+
+        .dashboard-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .dashboard-button {
+            display: inline-block;
+            padding: 13px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            border: 1px solid #333;
+            color: white;
+            background: #202020;
+        }
+
+        .dashboard-button.primary {
+            background: #229797;
+            border-color: #229797;
+        }
+
+        .dashboard-button:hover {
+            opacity: 0.88;
+        }
+
+        .account-title {
+            font-size: 20px;
+            margin-bottom: 22px;
+        }
+
+        .account-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 14px 0;
+            border-bottom: 1px solid #292929;
+        }
+
+        .account-row:last-child {
+            border-bottom: none;
+        }
+
+        .account-row span:first-child {
+            color: #888;
+        }
+
+        .account-row span:last-child {
+            color: white;
+            text-align: right;
+            word-break: break-word;
+        }
+
+        .transactions-card {
+            grid-column: 1 / -1;
+        }
+
+        .transactions-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 18px 0;
+            border-bottom: 1px solid #292929;
+        }
+
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+
+        .transaction-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .transaction-item small {
+            color: #777;
+        }
+
+        .empty-transactions {
+            color: #777;
+            padding: 20px 0;
+        }
+
+        .logout-button {
+            border: none;
+            background: transparent;
+            color: #ff7777;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .dashboard-footer {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 25px;
+            border-top: 1px solid #222;
+            color: #666;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        @media (max-width: 850px) {
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .transactions-card {
+                grid-column: auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .dashboard-page {
+                padding: 30px 18px;
+            }
+
+            .dashboard-header h1 {
+                font-size: 27px;
+            }
+
+            .balance {
+                font-size: 34px;
+            }
+
+            .account-row {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .account-row span:last-child {
+                text-align: left;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header class="topbar">
+
+        <div class="logo">
+            Quick<span>TopUp</span>
+        </div>
+
+        <button
+            id="logout-button"
+            class="logout-button"
+        >
+            Logout
+        </button>
+
+    </header>
+
+
+    <main class="dashboard-page">
+
+        <div class="dashboard-header">
+
+            <h1>
+                Welcome,
+                <span id="dashboard-user-name">
+                    User
+                </span>
+            </h1>
+
+            <p>
+                Manage your wallet and digital services.
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-grid">
+
+
+            <!-- WALLET -->
+
+            <section class="dashboard-card balance-card">
+
+                <div class="card-label">
+                    Wallet Balance
+                </div>
+
+                <div
+                    class="balance"
+                    id="wallet-balance"
+                >
+                    ₦0.00
+                </div>
+
+                <div class="dashboard-buttons">
+
+                    <a
+                        href="fund-wallet.html"
+                        class="dashboard-button primary"
+                    >
+                        + Add Money
+                    </a>
+
+                    <a
+                        href="buy-data.html"
+                        class="dashboard-button"
+                    >
+                        Buy Data
+                    </a>
+
+                    <a
+                        href="buy-airtime.html"
+                        class="dashboard-button"
+                    >
+                        Buy Airtime
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ACCOUNT -->
+
+            <section class="dashboard-card">
+
+                <h2 class="account-title">
+                    Account Information
+                </h2>
+
+                <div class="account-row">
+
+                    <span>
+                        Full Name
+                    </span>
+
+                    <span id="accountFullName">
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="account-row">
+
+                    <span>
+                        Email
+                    </span>
+
+                    <span id="accountEmail">
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="account-row">
+
+                    <span>
+                        Phone
+                    </span>
+
+                    <span id="accountPhone">
+                        -
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- TRANSACTIONS -->
+
+            <section class="dashboard-card transactions-card">
+
+                <h2 class="transactions-title">
+                    Recent Transactions
+                </h2>
+
+                <div id="transactions-list">
+
+                    <div class="empty-transactions">
+                        No transactions yet.
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <footer class="dashboard-footer">
+
+            QuickTopUp
+
+            <br>
+
+            Simple, fast and convenient digital services.
+
+            <br><br>
+
+            © 2026 QuickTopUp. All rights reserved.
+
+        </footer>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

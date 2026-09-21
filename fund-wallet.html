@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fund Wallet | QuickTopUp</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+
+        <div class="logo">
+            Quick<span>TopUp</span>
+        </div>
+
+        <a href="dashboard.html" class="back-link">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <main class="fund-page">
+
+        <div class="fund-card">
+
+            <div class="fund-icon">
+                💳
+            </div>
+
+            <h1>Fund Your Wallet</h1>
+
+            <p class="fund-subtitle">
+                Add money to your QuickTopUp wallet securely with Paystack.
+            </p>
+
+
+            <div class="amount-section">
+
+                <label for="amount">
+                    Amount
+                </label>
+
+                <div class="amount-input-wrapper">
+                    <span>₦</span>
+
+                    <input
+                        type="number"
+                        id="amount"
+                        placeholder="Enter amount"
+                        min="100"
+                    >
+
+                </div>
+
+                <p class="amount-note">
+                    Minimum funding amount: ₦100
+                </p>
+
+            </div>
+
+
+            <div class="quick-amounts">
+
+                <button
+                    type="button"
+                    class="quick-amount"
+                    data-amount="100"
+                >
+                    ₦100
+                </button>
+
+                <button
+                    type="button"
+                    class="quick-amount"
+                    data-amount="500"
+                >
+                    ₦500
+                </button>
+
+                <button
+                    type="button"
+                    class="quick-amount"
+                    data-amount="1000"
+                >
+                    ₦1,000
+                </button>
+
+                <button
+                    type="button"
+                    class="quick-amount"
+                    data-amount="5000"
+                >
+                    ₦5,000
+                </button>
+
+            </div>
+
+
+            <p id="fundMessage" class="fund-message"></p>
+
+
+            <button
+                type="button"
+                id="continuePayment"
+                class="primary-button"
+            >
+                Continue to Payment
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
