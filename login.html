@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login - QuickTopUp</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        :root {
+            --teal: #229797;
+            --teal-light: #51caca;
+            --dark: #071313;
+            --card: rgba(15, 29, 29, 0.92);
+            --border: rgba(255,255,255,0.10);
+            --text: #ffffff;
+            --muted: #9aa9a9;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 25px;
+
+            color: var(--text);
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(34,151,151,0.18),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 80% 80%,
+                    rgba(34,151,151,0.12),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #040b0b,
+                    #0b1919,
+                    #061010
+                );
+
+        }
+
+
+        .page {
+
+            width: 100%;
+
+            max-width: 1050px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                460px;
+
+            gap: 60px;
+
+            align-items: center;
+
+        }
+
+
+        /* =========================================
+           LEFT SIDE
+        ========================================= */
+
+        .intro {
+
+            padding: 20px;
+
+        }
+
+
+        .logo {
+
+            display: inline-block;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 26px;
+
+            font-weight: 900;
+
+            letter-spacing: -1px;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .logo span {
+
+            color: var(--teal-light);
+
+        }
+
+
+        .badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 8px 13px;
+
+            border-radius: 30px;
+
+            border: 1px solid
+                rgba(34,151,151,0.30);
+
+            background:
+                rgba(34,151,151,0.08);
+
+            color: #9de4e4;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .badge-dot {
+
+            width: 7px;
+
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: var(--teal);
+
+            box-shadow:
+                0 0 12px var(--teal);
+
+        }
+
+
+        .intro h1 {
+
+            font-size:
+                clamp(42px, 6vw, 72px);
+
+            line-height: 0.98;
+
+            letter-spacing: -4px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .intro h1 span {
+
+            color: var(--teal-light);
+
+        }
+
+
+        .intro p {
+
+            max-width: 520px;
+
+            color: var(--muted);
+
+            font-size: 16px;
+
+            line-height: 1.8;
+
+        }
+
+
+        .features {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 14px;
+
+            margin-top: 35px;
+
+            max-width: 500px;
+
+        }
+
+
+        .feature {
+
+            padding: 16px;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                rgba(255,255,255,0.03);
+
+            border-radius: 14px;
+
+        }
+
+
+        .feature strong {
+
+            display: block;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .feature span {
+
+            color: #728181;
+
+            font-size: 11px;
+
+            line-height: 1.4;
+
+        }
+
+
+        /* =========================================
+           LOGIN CARD
+        ========================================= */
+
+        .login-card {
+
+            position: relative;
+
+            padding: 34px;
+
+            border:
+                1px solid var(--border);
+
+            background: var(--card);
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 30px 80px
+                rgba(0,0,0,0.45);
+
+            backdrop-filter: blur(18px);
+
+        }
+
+
+        .login-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 130px;
+
+            height: 130px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(34,151,151,0.16);
+
+            filter: blur(45px);
+
+            top: -40px;
+
+            right: -30px;
+
+            pointer-events: none;
+
+        }
+
+
+        .login-top {
+
+            margin-bottom: 28px;
+
+        }
+
+
+        .login-top h2 {
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .login-top p {
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 9px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+        }
+
+
+        .input-wrap {
+
+            position: relative;
+
+        }
+
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 15px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            color: #668080;
+
+            font-size: 15px;
+
+            pointer-events: none;
+
+        }
+
+
+        .input {
+
+            width: 100%;
+
+            padding:
+                15px
+                15px
+                15px
+                42px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.12);
+
+            border-radius: 12px;
+
+            background:
+                rgba(0,0,0,0.22);
+
+            color: white;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+
+        }
+
+
+        .input::placeholder {
+
+            color: #596767;
+
+        }
+
+
+        .input:focus {
+
+            border-color:
+                var(--teal);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(34,151,151,0.10);
+
+        }
+
+
+        .password-row {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            margin-bottom: 9px;
+
+        }
+
+
+        .password-row label {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .forgot-link {
+
+            color: var(--teal-light);
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+        }
+
+
+        .forgot-link:hover {
+
+            color: white;
+
+        }
+
+
+        .login-button {
+
+            width: 100%;
+
+            padding: 16px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #229797,
+                    #2ab2b2
+                );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+
+            margin-top: 5px;
+
+        }
+
+
+        .login-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(34,151,151,0.20);
+
+        }
+
+
+        .divider {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin:
+                25px 0;
+
+            color: #5f6f6f;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .divider::before,
+        .divider::after {
+
+            content: "";
+
+            height: 1px;
+
+            flex: 1;
+
+            background:
+                rgba(255,255,255,0.08);
+
+        }
+
+
+        .register-text {
+
+            text-align: center;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+        }
+
+
+        .register-text a {
+
+            color: var(--teal-light);
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+        }
+
+
+        .register-text a:hover {
+
+            color: white;
+
+        }
+
+
+        .back-home {
+
+            display: block;
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #758484;
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+        }
+
+
+        .back-home:hover {
+
+            color: white;
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 850px) {
+
+            body {
+
+                padding: 18px;
+
+            }
+
+
+            .page {
+
+                grid-template-columns: 1fr;
+
+                gap: 25px;
+
+                max-width: 520px;
+
+            }
+
+
+            .intro {
+
+                text-align: center;
+
+                padding: 0;
+
+            }
+
+
+            .logo {
+
+                margin-bottom: 20px;
+
+            }
+
+
+            .intro h1 {
+
+                letter-spacing: -3px;
+
+            }
+
+
+            .intro p {
+
+                margin:
+                    0 auto;
+
+            }
+
+
+            .features {
+
+                margin:
+                    25px auto 0;
+
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .login-card {
+
+                padding: 24px;
+
+                border-radius: 20px;
+
+            }
+
+
+            .features {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .intro h1 {
+
+                font-size: 42px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="page">
+
+
+        <!-- =========================================
+             LEFT SIDE
+        ========================================== -->
+
+        <div class="intro">
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+                Quick<span>TopUp</span>
+            </a>
+
+
+            <div class="badge">
+
+                <span class="badge-dot"></span>
+
+                Fast & Easy Recharge
+
+            </div>
+
+
+            <h1>
+
+                Welcome
+
+                <span>Back.</span>
+
+            </h1>
+
+
+            <p>
+
+                Login to your QuickTopUp account
+                to manage your wallet, MTN data
+                and transactions from one place.
+
+            </p>
+
+
+            <div class="features">
+
+
+                <div class="feature">
+
+                    <strong>
+                        Secure Wallet
+                    </strong>
+
+                    <span>
+                        Fund your wallet and
+                        manage your balance.
+                    </span>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <strong>
+                        MTN Data
+                    </strong>
+
+                    <span>
+                        Buy MTN data directly
+                        from your wallet.
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+             LOGIN CARD
+        ========================================== -->
+
+        <div class="login-card">
+
+
+            <div class="login-top">
+
+                <h2>
+                    Sign In
+                </h2>
+
+                <p>
+                    Enter your account details
+                    to continue.
+                </p>
+
+            </div>
+
+
+            <form
+                id="login-form"
+            >
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label
+                        for="login-email"
+                    >
+                        Email Address
+                    </label>
+
+
+                    <div class="input-wrap">
+
+                        <span
+                            class="input-icon"
+                        >
+                            ✉
+                        </span>
+
+
+                        <input
+                            type="email"
+                            id="login-email"
+                            class="input"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <div class="password-row">
+
+                        <label
+                            for="login-password"
+                        >
+                            Password
+                        </label>
+
+
+                        <a
+                            href="#"
+                            class="forgot-link"
+                            onclick="
+                                alert('Password reset will be added soon.');
+                                return false;
+                            "
+                        >
+                            Forgot password?
+                        </a>
+
+                    </div>
+
+
+                    <div class="input-wrap">
+
+                        <span
+                            class="input-icon"
+                        >
+                            ●
+                        </span>
+
+
+                        <input
+                            type="password"
+                            id="login-password"
+                            class="input"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    Login
+                </button>
+
+
+            </form>
+
+
+            <div class="divider">
+                OR
+            </div>
+
+
+            <div class="register-text">
+
+                Don't have an account?
+
+                <a
+                    href="register.html"
+                >
+                    Create Account
+                </a>
+
+            </div>
+
+
+            <a
+                href="index.html"
+                class="back-home"
+            >
+                ← Back to homepage
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- KEEP YOUR EXISTING JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
