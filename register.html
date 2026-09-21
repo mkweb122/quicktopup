@@ -1,693 +1,1090 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Create Account - QuickTopUp</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Create Account - QuickTopUp</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <style>
 
-    :root {
-      --bg: #071414;
-      --card: #0d2020;
-      --text: #ffffff;
-      --muted: #9eb4b4;
-      --green: #229797;
-      --green-light: #2bb8b8;
-      --border: rgba(255, 255, 255, 0.09);
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(
-          circle at top left,
-          rgba(34, 151, 151, 0.18),
-          transparent 35%
-        ),
-        radial-gradient(
-          circle at bottom right,
-          rgba(34, 151, 151, 0.12),
-          transparent 30%
-        ),
-        var(--bg);
+        :root {
+            --bg: #071414;
+            --card: #0d2020;
+            --green: #229797;
+            --green-light: #36c2c2;
+            --text: #ffffff;
+            --muted: #9eb4b4;
+            --border: rgba(255,255,255,.08);
+        }
 
-      color: var(--text);
+        body {
+            min-height: 100vh;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
 
-      padding: 25px;
-    }
+            background:
+                radial-gradient(
+                    circle at top left,
+                    rgba(34,151,151,.18),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at bottom right,
+                    rgba(34,151,151,.10),
+                    transparent 30%
+                ),
+                var(--bg);
 
-    .page {
-      width: 100%;
-      max-width: 1050px;
+            color: var(--text);
 
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-      background: rgba(8, 24, 24, 0.92);
+            padding: 20px;
+        }
 
-      border: 1px solid var(--border);
+        .page {
+            width: 100%;
+            max-width: 1050px;
 
-      border-radius: 28px;
+            display: grid;
 
-      overflow: hidden;
+            grid-template-columns:
+                1fr 1fr;
 
-      box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.4);
-    }
+            background:
+                rgba(8,24,24,.95);
 
-    /* LEFT */
-    .left {
-      padding: 55px;
+            border:
+                1px solid var(--border);
 
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+            border-radius: 28px;
 
-      background:
-        linear-gradient(
-          145deg,
-          rgba(34, 151, 151, 0.20),
-          transparent 55%
-        ),
-        #091b1b;
-    }
+            overflow: hidden;
 
-    .logo {
-      text-decoration: none;
+            box-shadow:
+                0 35px 90px
+                rgba(0,0,0,.40);
+        }
 
-      color: white;
+        /* LEFT */
 
-      font-size: 28px;
+        .left {
+            padding: 55px;
 
-      font-weight: 800;
+            display: flex;
+            flex-direction: column;
 
-      letter-spacing: -1px;
-    }
+            justify-content:
+                space-between;
 
-    .logo span {
-      color: var(--green-light);
-    }
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(34,151,151,.20),
+                    transparent 55%
+                ),
+                #091b1b;
+        }
 
-    .left-content {
-      max-width: 450px;
+        .logo {
+            display: flex;
+            align-items: center;
 
-      margin-top: 60px;
+            gap: 10px;
 
-      margin-bottom: 60px;
-    }
+            text-decoration: none;
 
-    .badge {
-      display: inline-flex;
+            color: white;
 
-      align-items: center;
+            font-size: 25px;
 
-      gap: 8px;
+            font-weight: 800;
+        }
 
-      padding: 9px 14px;
+        .logo-mark {
+            width: 38px;
+            height: 38px;
 
-      border-radius: 50px;
+            display: grid;
 
-      background: rgba(34, 151, 151, 0.12);
+            place-items: center;
 
-      border: 1px solid rgba(43, 184, 184, 0.2);
+            border-radius: 11px;
 
-      color: #a7eeee;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--green-light),
+                    var(--green)
+                );
 
-      font-size: 13px;
+            font-weight: 900;
 
-      font-weight: 600;
+            box-shadow:
+                0 10px 25px
+                rgba(34,151,151,.25);
+        }
 
-      margin-bottom: 25px;
-    }
+        .logo span {
+            color:
+                var(--green-light);
+        }
 
-    .badge-dot {
-      width: 7px;
-      height: 7px;
+        .left-content {
+            max-width: 450px;
 
-      background: var(--green-light);
+            margin:
+                60px 0;
+        }
 
-      border-radius: 50%;
+        .badge {
+            display: inline-flex;
 
-      box-shadow:
-        0 0 12px
-        rgba(43, 184, 184, 0.8);
-    }
+            align-items: center;
 
-    .left h1 {
-      font-size: clamp(40px, 5vw, 62px);
+            gap: 8px;
 
-      line-height: 1.03;
+            padding:
+                9px 14px;
 
-      letter-spacing: -2.5px;
+            border-radius: 999px;
 
-      margin-bottom: 22px;
-    }
+            background:
+                rgba(34,151,151,.12);
 
-    .left h1 span {
-      color: var(--green-light);
-    }
+            border:
+                1px solid
+                rgba(54,194,194,.18);
 
-    .left p {
-      color: var(--muted);
+            color:
+                #a8eeee;
 
-      font-size: 16px;
+            font-size: 13px;
 
-      line-height: 1.75;
-    }
+            font-weight: 700;
 
-    .features {
-      display: grid;
+            margin-bottom: 24px;
+        }
 
-      gap: 14px;
+        .dot {
+            width: 7px;
+            height: 7px;
 
-      margin-top: 32px;
-    }
+            border-radius: 50%;
 
-    .feature {
-      display: flex;
+            background:
+                var(--green-light);
 
-      align-items: center;
+            box-shadow:
+                0 0 14px
+                rgba(54,194,194,.9);
+        }
 
-      gap: 13px;
+        .left h1 {
+            font-size:
+                clamp(
+                    40px,
+                    5vw,
+                    62px
+                );
 
-      color: #dceaea;
+            line-height: 1.02;
 
-      font-size: 14px;
-    }
+            letter-spacing:
+                -2.5px;
 
-    .feature-icon {
-      width: 34px;
-      height: 34px;
+            margin-bottom: 22px;
+        }
 
-      display: flex;
+        .left h1 span {
+            color:
+                var(--green-light);
+        }
 
-      justify-content: center;
+        .left p {
+            color:
+                var(--muted);
 
-      align-items: center;
+            font-size: 16px;
 
-      border-radius: 10px;
+            line-height: 1.75;
+        }
 
-      background:
-        rgba(34, 151, 151, 0.14);
+        .features {
+            display: grid;
 
-      border: 1px solid
-        rgba(43, 184, 184, 0.18);
+            gap: 14px;
 
-      color: var(--green-light);
+            margin-top: 32px;
+        }
 
-      font-weight: bold;
-    }
+        .feature {
+            display: flex;
 
-    .left-bottom {
-      color: #6f8989;
+            align-items: center;
 
-      font-size: 12px;
-    }
+            gap: 12px;
 
-    /* RIGHT */
-    .right {
-      padding: 55px;
+            color:
+                #dceaea;
 
-      display: flex;
+            font-size: 14px;
+        }
 
-      align-items: center;
+        .feature-icon {
+            width: 34px;
+            height: 34px;
 
-      justify-content: center;
-    }
+            display: grid;
 
-    .form-box {
-      width: 100%;
+            place-items: center;
 
-      max-width: 420px;
-    }
+            border-radius: 10px;
 
-    .form-header {
-      margin-bottom: 28px;
-    }
+            background:
+                rgba(34,151,151,.13);
 
-    .form-header h2 {
-      font-size: 34px;
+            color:
+                var(--green-light);
 
-      letter-spacing: -1px;
+            font-weight: 800;
+        }
 
-      margin-bottom: 9px;
-    }
+        .copyright {
+            color:
+                #6b8181;
 
-    .form-header p {
-      color: var(--muted);
+            font-size: 11px;
+        }
 
-      font-size: 14px;
+        /* RIGHT */
 
-      line-height: 1.6;
-    }
+        .right {
+            padding: 55px;
 
-    .form-group {
-      margin-bottom: 18px;
-    }
+            display: flex;
 
-    .form-group label {
-      display: block;
+            align-items: center;
 
-      margin-bottom: 8px;
+            justify-content: center;
+        }
 
-      color: #dbe8e8;
+        .form-box {
+            width: 100%;
 
-      font-size: 13px;
+            max-width: 420px;
+        }
 
-      font-weight: 600;
-    }
+        .form-header {
+            margin-bottom: 28px;
+        }
 
-    .form-group input {
-      width: 100%;
+        .form-header h2 {
+            font-size: 34px;
 
-      height: 54px;
+            letter-spacing:
+                -1.2px;
 
-      padding: 0 16px;
+            margin-bottom: 9px;
+        }
 
-      border-radius: 14px;
+        .form-header p {
+            color:
+                var(--muted);
 
-      border: 1px solid var(--border);
+            font-size: 14px;
 
-      background: var(--card);
+            line-height: 1.6;
+        }
 
-      color: white;
+        .form-group {
+            margin-bottom: 18px;
+        }
 
-      outline: none;
+        .form-group label {
+            display: block;
 
-      font-size: 15px;
+            margin-bottom: 8px;
 
-      transition: 0.2s ease;
-    }
+            color:
+                #dceaea;
 
-    .form-group input::placeholder {
-      color: #607575;
-    }
+            font-size: 13px;
 
-    .form-group input:focus {
-      border-color: var(--green);
+            font-weight: 700;
+        }
 
-      box-shadow:
-        0 0 0 4px
-        rgba(34, 151, 151, 0.10);
-    }
+        .form-group input {
+            width: 100%;
 
-    .password-note {
-      margin-top: 7px;
+            height: 54px;
 
-      font-size: 11px;
+            padding:
+                0 16px;
 
-      color: #728989;
-    }
+            border:
+                1px solid
+                var(--border);
 
-    .terms {
-      display: flex;
+            border-radius: 14px;
 
-      align-items: flex-start;
+            background:
+                var(--card);
 
-      gap: 10px;
+            color: white;
 
-      margin: 8px 0 21px;
+            outline: none;
 
-      color: #839898;
+            font-size: 15px;
+        }
 
-      font-size: 12px;
+        .form-group input:focus {
+            border-color:
+                var(--green);
 
-      line-height: 1.5;
-    }
+            box-shadow:
+                0 0 0 4px
+                rgba(34,151,151,.10);
+        }
 
-    .terms input {
-      margin-top: 3px;
+        .form-group input::placeholder {
+            color:
+                #607575;
+        }
 
-      accent-color: var(--green);
-    }
+        .password-help {
+            margin-top: 6px;
 
-    .terms a {
-      color: #95dcdc;
+            color:
+                #718989;
 
-      text-decoration: none;
-    }
+            font-size: 11px;
+        }
 
-    .terms a:hover {
-      text-decoration: underline;
-    }
+        .terms {
+            display: flex;
 
-    .create-btn {
-      width: 100%;
+            align-items: flex-start;
 
-      height: 55px;
+            gap: 9px;
 
-      border: none;
+            margin:
+                8px 0 22px;
 
-      border-radius: 14px;
+            color:
+                #819494;
 
-      background:
-        linear-gradient(
-          135deg,
-          var(--green-light),
-          var(--green)
-        );
+            font-size: 12px;
 
-      color: white;
+            line-height: 1.5;
+        }
 
-      font-size: 15px;
+        .terms input {
+            width: auto;
 
-      font-weight: 700;
+            height: auto;
 
-      cursor: pointer;
+            margin-top: 3px;
 
-      transition: 0.2s ease;
+            accent-color:
+                var(--green);
+        }
 
-      box-shadow:
-        0 12px 28px
-        rgba(34, 151, 151, 0.22);
-    }
+        .terms a {
+            color:
+                #9cdddd;
 
-    .create-btn:hover {
-      transform: translateY(-2px);
+            text-decoration: none;
+        }
 
-      box-shadow:
-        0 17px 35px
-        rgba(34, 151, 151, 0.30);
-    }
+        .create-btn {
+            width: 100%;
 
-    .create-btn:active {
-      transform: translateY(0);
-    }
+            height: 55px;
 
-    .login-text {
-      margin-top: 22px;
+            border: none;
 
-      text-align: center;
+            border-radius: 14px;
 
-      color: #809494;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--green-light),
+                    var(--green)
+                );
 
-      font-size: 13px;
-    }
+            color: white;
 
-    .login-text a {
-      color: #9be0e0;
+            font-size: 15px;
 
-      text-decoration: none;
+            font-weight: 800;
 
-      font-weight: 700;
-    }
+            cursor: pointer;
 
-    .login-text a:hover {
-      text-decoration: underline;
-    }
+            box-shadow:
+                0 13px 30px
+                rgba(34,151,151,.22);
 
-    .back-home {
-      display: block;
+            transition:
+                .2s ease;
+        }
 
-      text-align: center;
+        .create-btn:hover {
+            transform:
+                translateY(-2px);
 
-      margin-top: 18px;
+            box-shadow:
+                0 18px 38px
+                rgba(34,151,151,.30);
+        }
 
-      color: #6f8585;
+        .message {
+            display: none;
 
-      font-size: 12px;
+            margin-top: 14px;
 
-      text-decoration: none;
-    }
+            padding: 12px;
 
-    .back-home:hover {
-      color: white;
-    }
+            border-radius: 10px;
 
-    /* MOBILE */
-    @media (max-width: 850px) {
+            font-size: 12px;
 
-      .page {
-        grid-template-columns: 1fr;
+            text-align: center;
+        }
 
-        max-width: 600px;
-      }
+        .message.error {
+            display: block;
 
-      .left {
-        padding: 35px;
-      }
+            background:
+                rgba(255,80,80,.10);
 
-      .left-content {
-        margin-top: 45px;
-        margin-bottom: 45px;
-      }
+            color:
+                #ff8a8a;
+        }
 
-      .left h1 {
-        font-size: 44px;
-      }
+        .message.success {
+            display: block;
 
-      .right {
-        padding: 35px;
-      }
-    }
+            background:
+                rgba(54,194,194,.10);
 
-    @media (max-width: 500px) {
+            color:
+                #7ee5d1;
+        }
 
-      body {
-        padding: 12px;
-      }
+        .login-text {
+            margin-top: 22px;
 
-      .page {
-        border-radius: 20px;
-      }
+            text-align: center;
 
-      .left,
-      .right {
-        padding: 25px 20px;
-      }
+            color:
+                #819494;
 
-      .left h1 {
-        font-size: 38px;
-      }
+            font-size: 13px;
+        }
 
-      .form-header h2 {
-        font-size: 29px;
-      }
-    }
-  </style>
+        .login-text a {
+            color:
+                #9cdddd;
+
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+        .back {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            color:
+                #6c8282;
+
+            font-size: 12px;
+
+            text-decoration: none;
+        }
+
+        .back:hover {
+            color: white;
+        }
+
+        @media (max-width: 850px) {
+
+            .page {
+                grid-template-columns: 1fr;
+
+                max-width: 600px;
+            }
+
+            .left {
+                padding: 35px;
+            }
+
+            .right {
+                padding: 35px;
+            }
+
+            .left-content {
+                margin:
+                    45px 0;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 10px;
+            }
+
+            .left,
+            .right {
+                padding:
+                    25px 20px;
+            }
+
+            .page {
+                border-radius: 20px;
+            }
+
+            .left h1 {
+                font-size: 38px;
+            }
+
+            .form-header h2 {
+                font-size: 29px;
+            }
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-  <div class="page">
+
+<div class="page">
+
 
     <!-- LEFT SIDE -->
+
     <section class="left">
 
-      <a href="index.html" class="logo">
-        Quick<span>TopUp</span>
-      </a>
+        <a
+            href="index.html"
+            class="logo"
+        >
 
-      <div class="left-content">
+            <div class="logo-mark">
+                Q
+            </div>
 
-        <div class="badge">
-          <span class="badge-dot"></span>
-          Fast & Secure
+            Quick<span>TopUp</span>
+
+        </a>
+
+
+        <div class="left-content">
+
+            <div class="badge">
+
+                <span class="dot"></span>
+
+                Fast & Secure
+
+            </div>
+
+
+            <h1>
+
+                Get started with
+                <span>QuickTopUp.</span>
+
+            </h1>
+
+
+            <p>
+
+                Create your account and
+                start managing your wallet
+                and digital services.
+
+            </p>
+
+
+            <div class="features">
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    Simple account setup
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ₦
+                    </div>
+
+                    Easy wallet funding
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ◇
+                    </div>
+
+                    Buy MTN data easily
+
+                </div>
+
+
+            </div>
+
         </div>
 
-        <h1>
-          Get started with
-          <span>QuickTopUp.</span>
-        </h1>
 
-        <p>
-          Create your account and enjoy a simple
-          way to manage your wallet and buy mobile
-          data quickly and securely.
-        </p>
+        <div class="copyright">
 
-        <div class="features">
-
-          <div class="feature">
-            <div class="feature-icon">✓</div>
-            <span>
-              Simple and secure account setup
-            </span>
-          </div>
-
-          <div class="feature">
-            <div class="feature-icon">✓</div>
-            <span>
-              Fast wallet funding
-            </span>
-          </div>
-
-          <div class="feature">
-            <div class="feature-icon">✓</div>
-            <span>
-              Easy MTN data purchases
-            </span>
-          </div>
+            © 2026 QuickTopUp.
+            All rights reserved.
 
         </div>
-
-      </div>
-
-      <div class="left-bottom">
-        © 2026 QuickTopUp. All rights reserved.
-      </div>
 
     </section>
 
 
     <!-- RIGHT SIDE -->
+
     <section class="right">
 
-      <div class="form-box">
-
-        <div class="form-header">
-
-          <h2>Create Account</h2>
-
-          <p>
-            Enter your details below to create
-            your QuickTopUp account.
-          </p>
-
-        </div>
+        <div class="form-box">
 
 
-        <!-- IMPORTANT:
-             These IDs match script.js exactly -->
+            <div class="form-header">
 
-        <form id="registerForm">
+                <h2>
+                    Create Account
+                </h2>
 
-          <div class="form-group">
+                <p>
+                    Enter your details to create
+                    your QuickTopUp account.
+                </p>
 
-            <label for="fullName">
-              Full Name
-            </label>
-
-            <input
-              type="text"
-              id="fullName"
-              placeholder="Enter your full name"
-              required
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="email">
-              Email Address
-            </label>
-
-            <input
-              type="email"
-              id="email"
-              placeholder="you@example.com"
-              required
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="phone">
-              Phone Number
-            </label>
-
-            <input
-              type="tel"
-              id="phone"
-              placeholder="08012345678"
-              maxlength="11"
-              required
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="password">
-              Password
-            </label>
-
-            <input
-              type="password"
-              id="password"
-              placeholder="Create a password"
-              minlength="6"
-              required
-            >
-
-            <div class="password-note">
-              Use at least 6 characters.
             </div>
 
-          </div>
 
+            <!-- IMPORTANT: IDs -->
 
-          <label class="terms">
-
-            <input
-              type="checkbox"
-              required
+            <form
+                id="registerForm"
+                novalidate
             >
 
-            <span>
-              I agree to the
-              <a href="#">Terms of Service</a>
-              and
-              <a href="#">Privacy Policy</a>.
-            </span>
 
-          </label>
+                <div class="form-group">
 
+                    <label for="fullName">
+                        Full Name
+                    </label>
 
-          <button
-            type="submit"
-            class="create-btn"
-          >
-            Create Account
-          </button>
+                    <input
+                        type="text"
+                        id="fullName"
+                        placeholder="Enter your full name"
+                    >
 
-        </form>
+                </div>
 
 
-        <div class="login-text">
+                <div class="form-group">
 
-          Already have an account?
+                    <label for="email">
+                        Email Address
+                    </label>
 
-          <a href="login.html">
-            Login
-          </a>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="you@example.com"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="08012345678"
+                        maxlength="11"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a password"
+                    >
+
+                    <div class="password-help">
+                        Minimum 6 characters.
+                    </div>
+
+                </div>
+
+
+                <label class="terms">
+
+                    <input
+                        type="checkbox"
+                        id="terms"
+                    >
+
+                    <span>
+
+                        I agree to the
+                        <a href="#">
+                            Terms of Service
+                        </a>
+                        and
+                        <a href="#">
+                            Privacy Policy
+                        </a>.
+
+                    </span>
+
+                </label>
+
+
+                <button
+                    type="submit"
+                    class="create-btn"
+                >
+                    Create Account
+                </button>
+
+
+                <div
+                    id="registerMessage"
+                    class="message"
+                ></div>
+
+
+            </form>
+
+
+            <div class="login-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </div>
+
+
+            <a
+                href="index.html"
+                class="back"
+            >
+                ← Back to homepage
+            </a>
+
 
         </div>
-
-
-        <a
-          href="index.html"
-          class="back-home"
-        >
-          ← Back to homepage
-        </a>
-
-      </div>
 
     </section>
 
-  </div>
+</div>
 
 
-  <!-- YOUR EXISTING JAVASCRIPT -->
-  <script src="script.js"></script>
+<!-- =========================================================
+     INDEPENDENT REGISTRATION JAVASCRIPT
+========================================================== -->
+
+<script>
+
+document
+    .getElementById("registerForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const fullName =
+                document
+                    .getElementById("fullName")
+                    .value
+                    .trim();
+
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            const phone =
+                document
+                    .getElementById("phone")
+                    .value
+                    .trim();
+
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value
+                    .trim();
+
+
+            const terms =
+                document
+                    .getElementById("terms")
+                    .checked;
+
+
+            const message =
+                document
+                    .getElementById("registerMessage");
+
+
+            function showError(text) {
+
+                message.textContent =
+                    text;
+
+                message.className =
+                    "message error";
+            }
+
+
+            function showSuccess(text) {
+
+                message.textContent =
+                    text;
+
+                message.className =
+                    "message success";
+            }
+
+
+            if (
+                !fullName ||
+                !email ||
+                !phone ||
+                !password
+            ) {
+
+                showError(
+                    "Please fill in all fields."
+                );
+
+                return;
+            }
+
+
+            if (
+                !/^\S+@\S+\.\S+$/.test(
+                    email
+                )
+            ) {
+
+                showError(
+                    "Please enter a valid email address."
+                );
+
+                return;
+            }
+
+
+            if (
+                !/^0\d{10}$/.test(
+                    phone
+                )
+            ) {
+
+                showError(
+                    "Please enter a valid Nigerian phone number."
+                );
+
+                return;
+            }
+
+
+            if (
+                password.length < 6
+            ) {
+
+                showError(
+                    "Password must be at least 6 characters."
+                );
+
+                return;
+            }
+
+
+            if (!terms) {
+
+                showError(
+                    "Please agree to the Terms of Service."
+                );
+
+                return;
+            }
+
+
+            let users = [];
+
+            try {
+
+                users =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "quickTopUpUsers"
+                        ) || "[]"
+                    );
+
+            } catch (error) {
+
+                users = [];
+
+            }
+
+
+            const existingUser =
+                users.find(
+                    user =>
+                        String(
+                            user.email
+                        ).toLowerCase() ===
+                        email
+                );
+
+
+            if (existingUser) {
+
+                showError(
+                    "An account with this email already exists."
+                );
+
+                return;
+            }
+
+
+            const newUser = {
+
+                id:
+                    Date.now().toString(),
+
+                fullName:
+                    fullName,
+
+                email:
+                    email,
+
+                phone:
+                    phone,
+
+                password:
+                    password,
+
+                balance:
+                    0,
+
+                transactions:
+                    []
+
+            };
+
+
+            users.push(
+                newUser
+            );
+
+
+            localStorage.setItem(
+                "quickTopUpUsers",
+                JSON.stringify(users)
+            );
+
+
+            localStorage.setItem(
+                "quickTopUpCurrentUser",
+                JSON.stringify(newUser)
+            );
+
+
+            showSuccess(
+                "Account created successfully!"
+            );
+
+
+            setTimeout(
+                function() {
+
+                    window.location.href =
+                        "dashboard.html";
+
+                },
+                700
+            );
+
+        }
+    );
+
+</script>
+
 
 </body>
+
 </html>
