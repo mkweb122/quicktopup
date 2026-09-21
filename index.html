@@ -1,88 +1,1325 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-```
-<meta charset="UTF-8">
+    <title>QuickTopUp — Simple Digital Services</title>
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <meta
+        name="description"
+        content="QuickTopUp makes airtime, data and wallet transactions simple and convenient."
+    >
 
-<meta
-    name="description"
-    content="QuickTopUp makes airtime, data and wallet funding simple, fast and secure."
->
+    <style>
 
-<title>QuickTopUp | Airtime, Data & More</title>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link
-    rel="stylesheet"
-    href="style.css"
->
+        :root {
+            --bg: #071414;
+            --bg-2: #0a1b1b;
+            --card: #0d2020;
+            --card-2: #102828;
+            --green: #229797;
+            --green-light: #36c2c2;
+            --white: #ffffff;
+            --text: #eaf8f8;
+            --muted: #91a9a9;
+            --border: rgba(255,255,255,0.08);
+        }
 
-<link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
->
+        html {
+            scroll-behavior: smooth;
+        }
 
-<link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
->
+        body {
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
 
-<link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
->
-```
+            background:
+                radial-gradient(
+                    circle at 15% 10%,
+                    rgba(34,151,151,0.18),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 90% 25%,
+                    rgba(34,151,151,0.10),
+                    transparent 28%
+                ),
+                var(--bg);
 
+            color: var(--white);
+
+            line-height: 1.5;
+
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .container {
+            width: min(1160px, 92%);
+            margin: auto;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================== */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background:
+                rgba(7,20,20,0.85);
+
+            border-bottom:
+                1px solid var(--border);
+
+            backdrop-filter: blur(16px);
+        }
+
+        .nav {
+            height: 78px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 23px;
+            font-weight: 800;
+
+            letter-spacing: -0.7px;
+        }
+
+        .logo-mark {
+            width: 38px;
+            height: 38px;
+
+            display: grid;
+            place-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--green-light),
+                    var(--green)
+                );
+
+            border-radius: 12px;
+
+            font-weight: 900;
+            color: white;
+
+            box-shadow:
+                0 10px 28px rgba(34,151,151,0.25);
+        }
+
+        .logo span {
+            color: var(--green-light);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #abc0c0;
+            font-size: 14px;
+            transition: .2s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            min-height: 46px;
+            padding: 0 20px;
+
+            border-radius: 12px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border:
+                1px solid
+                rgba(255,255,255,0.13);
+
+            color: white;
+
+            background:
+                rgba(255,255,255,0.03);
+        }
+
+        .btn-primary {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--green-light),
+                    var(--green)
+                );
+
+            color: white;
+
+            box-shadow:
+                0 12px 28px
+                rgba(34,151,151,0.22);
+        }
+
+        .menu-btn {
+            display: none;
+
+            width: 44px;
+            height: 44px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,0.04);
+
+            color: white;
+
+            font-size: 22px;
+
+            cursor: pointer;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            padding:
+                95px 0
+                80px;
+        }
+
+        .hero-grid {
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.05fr)
+                minmax(400px, .95fr);
+
+            align-items: center;
+
+            gap: 70px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 9px 14px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(34,151,151,0.11);
+
+            border:
+                1px solid
+                rgba(54,194,194,0.18);
+
+            color: #a8eeee;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            margin-bottom: 24px;
+        }
+
+        .eyebrow-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background:
+                var(--green-light);
+
+            box-shadow:
+                0 0 14px
+                rgba(54,194,194,.9);
+        }
+
+        .hero h1 {
+            max-width: 760px;
+
+            font-size:
+                clamp(
+                    48px,
+                    7vw,
+                    78px
+                );
+
+            line-height: .98;
+
+            letter-spacing:
+                -4px;
+
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color:
+                var(--green-light);
+        }
+
+        .hero-copy {
+            max-width: 640px;
+
+            color:
+                var(--muted);
+
+            font-size: 17px;
+
+            line-height: 1.75;
+
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 28px;
+
+            margin-top: 34px;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            color: #b7cccc;
+
+            font-size: 13px;
+        }
+
+        .stat-mark {
+            width: 29px;
+            height: 29px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 9px;
+
+            background:
+                rgba(34,151,151,0.12);
+
+            color:
+                var(--green-light);
+
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        /* =========================
+           HERO VISUAL
+        ========================== */
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .dashboard-card {
+            position: relative;
+
+            padding: 26px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(17,46,46,.96),
+                    rgba(8,25,25,.98)
+                );
+
+            border:
+                1px solid
+                rgba(255,255,255,0.09);
+
+            border-radius: 28px;
+
+            box-shadow:
+                0 35px 90px
+                rgba(0,0,0,.42);
+
+            overflow: hidden;
+        }
+
+        .dashboard-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 260px;
+            height: 260px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(34,151,151,.13);
+
+            filter: blur(55px);
+
+            top: -90px;
+            right: -90px;
+        }
+
+        .dashboard-top {
+            position: relative;
+            z-index: 1;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 24px;
+        }
+
+        .mini-brand {
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        .mini-brand span {
+            color:
+                var(--green-light);
+        }
+
+        .profile {
+            width: 39px;
+            height: 39px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.07);
+
+            color:
+                var(--green-light);
+
+            font-weight: 800;
+        }
+
+        .balance-card {
+            position: relative;
+            z-index: 1;
+
+            padding: 24px;
+
+            border-radius: 21px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(34,151,151,.20),
+                    rgba(17,40,40,.80)
+                );
+
+            border:
+                1px solid
+                rgba(54,194,194,.15);
+
+            margin-bottom: 18px;
+        }
+
+        .balance-label {
+            color:
+                #86a2a2;
+
+            font-size: 12px;
+
+            margin-bottom: 8px;
+        }
+
+        .balance {
+            font-size: 36px;
+
+            font-weight: 800;
+
+            letter-spacing:
+                -1.5px;
+        }
+
+        .quick-actions {
+            position: relative;
+            z-index: 1;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 11px;
+
+            margin-bottom: 18px;
+        }
+
+        .quick-action {
+            min-height: 82px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            gap: 8px;
+
+            border-radius: 16px;
+
+            background:
+                rgba(255,255,255,.035);
+
+            border:
+                1px solid
+                rgba(255,255,255,.06);
+
+            color: #c6d6d6;
+
+            font-size: 12px;
+
+            transition: .2s ease;
+        }
+
+        .quick-action:hover {
+            transform: translateY(-3px);
+
+            background:
+                rgba(34,151,151,.10);
+        }
+
+        .quick-icon {
+            width: 34px;
+            height: 34px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 10px;
+
+            background:
+                rgba(34,151,151,.12);
+
+            color:
+                var(--green-light);
+
+            font-weight: 800;
+        }
+
+        .activity {
+            position: relative;
+            z-index: 1;
+
+            padding: 20px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(4,15,15,.55);
+
+            border:
+                1px solid
+                rgba(255,255,255,.05);
+        }
+
+        .activity-header {
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            margin-bottom: 14px;
+        }
+
+        .activity-header strong {
+            font-size: 13px;
+        }
+
+        .activity-header span {
+            color:
+                #6e8888;
+
+            font-size: 11px;
+        }
+
+        .activity-item {
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            gap: 15px;
+
+            padding: 11px 0;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,.05);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-left {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+        }
+
+        .activity-icon {
+            width: 31px;
+            height: 31px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 9px;
+
+            background:
+                rgba(34,151,151,.10);
+
+            color:
+                var(--green-light);
+
+            font-size: 12px;
+        }
+
+        .activity-text strong {
+            display: block;
+
+            font-size: 11px;
+
+            margin-bottom: 2px;
+        }
+
+        .activity-text small {
+            color:
+                #668080;
+
+            font-size: 10px;
+        }
+
+        .activity-amount {
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* =========================
+           SECTION
+        ========================== */
+
+        section {
+            padding: 95px 0;
+        }
+
+        .section-head {
+            max-width: 680px;
+
+            margin-bottom: 42px;
+        }
+
+        .section-label {
+            color:
+                var(--green-light);
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing:
+                1.7px;
+
+            text-transform:
+                uppercase;
+
+            margin-bottom: 12px;
+        }
+
+        .section-head h2 {
+            font-size:
+                clamp(
+                    34px,
+                    5vw,
+                    52px
+                );
+
+            line-height: 1.03;
+
+            letter-spacing:
+                -2.3px;
+
+            margin-bottom: 16px;
+        }
+
+        .section-head p {
+            color:
+                var(--muted);
+
+            font-size: 15px;
+
+            line-height: 1.75;
+        }
+
+        /* =========================
+           SERVICES
+        ========================== */
+
+        .services {
+            background:
+                rgba(255,255,255,.01);
+        }
+
+        .services-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 16px;
+        }
+
+        .service-card {
+            position: relative;
+
+            padding: 28px;
+
+            min-height: 290px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content:
+                space-between;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(15,38,38,.93),
+                    rgba(8,25,25,.96)
+                );
+
+            border:
+                1px solid
+                var(--border);
+
+            transition:
+                transform .25s ease,
+                border-color .25s ease;
+        }
+
+        .service-card:hover {
+            transform:
+                translateY(-6px);
+
+            border-color:
+                rgba(54,194,194,.25);
+        }
+
+        .service-number {
+            color:
+                #527070;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 15px;
+
+            background:
+                rgba(34,151,151,.12);
+
+            color:
+                var(--green-light);
+
+            font-size: 20px;
+
+            margin:
+                26px 0 20px;
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+
+            letter-spacing:
+                -.7px;
+
+            margin-bottom: 9px;
+        }
+
+        .service-card p {
+            color:
+                var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+        .service-link {
+            margin-top: 25px;
+
+            color:
+                #a8eded;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+        /* =========================
+           HOW IT WORKS
+        ========================== */
+
+        .steps {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            gap: 14px;
+        }
+
+        .step {
+            padding: 24px;
+
+            border:
+                1px solid
+                var(--border);
+
+            background:
+                rgba(255,255,255,.025);
+
+            border-radius: 20px;
+
+            min-height: 210px;
+        }
+
+        .step-number {
+            color:
+                var(--green-light);
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            margin-bottom: 34px;
+        }
+
+        .step h3 {
+            font-size: 17px;
+
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color:
+                var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+        /* =========================
+           WHY US
+        ========================== */
+
+        .why-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 18px;
+        }
+
+        .why-card {
+            padding: 28px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(13,33,33,.95),
+                    rgba(7,21,21,.95)
+                );
+
+            border:
+                1px solid
+                var(--border);
+        }
+
+        .why-icon {
+            width: 46px;
+            height: 46px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            background:
+                rgba(34,151,151,.11);
+
+            color:
+                var(--green-light);
+
+            font-weight: 800;
+
+            margin-bottom: 20px;
+        }
+
+        .why-card h3 {
+            font-size: 19px;
+
+            margin-bottom: 8px;
+        }
+
+        .why-card p {
+            color:
+                var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+        /* =========================
+           CTA
+        ========================== */
+
+        .cta {
+            padding-bottom: 110px;
+        }
+
+        .cta-box {
+            position: relative;
+
+            overflow: hidden;
+
+            padding:
+                60px 50px;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(34,151,151,.17),
+                    rgba(11,34,34,.96)
+                );
+
+            border:
+                1px solid
+                rgba(54,194,194,.16);
+
+            text-align: center;
+        }
+
+        .cta-box::before {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(54,194,194,.10);
+
+            filter:
+                blur(60px);
+
+            top: -160px;
+            left: -100px;
+        }
+
+        .cta-box > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-box h2 {
+            font-size:
+                clamp(
+                    34px,
+                    5vw,
+                    54px
+                );
+
+            line-height: 1.03;
+
+            letter-spacing:
+                -2.3px;
+
+            margin-bottom: 16px;
+        }
+
+        .cta-box p {
+            max-width: 580px;
+
+            margin:
+                0 auto 28px;
+
+            color:
+                var(--muted);
+
+            font-size: 15px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            padding:
+                60px 0 30px;
+
+            border-top:
+                1px solid
+                var(--border);
+
+            background:
+                rgba(0,0,0,.18);
+        }
+
+        .footer-grid {
+            display: grid;
+
+            grid-template-columns:
+                1.5fr
+                1fr
+                1fr
+                1fr;
+
+            gap: 40px;
+
+            padding-bottom: 42px;
+        }
+
+        .footer-brand p {
+            max-width: 330px;
+
+            color:
+                #758d8d;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            margin-top: 15px;
+        }
+
+        .footer-col h4 {
+            font-size: 13px;
+
+            margin-bottom: 16px;
+        }
+
+        .footer-col a {
+            display: block;
+
+            color:
+                #718989;
+
+            font-size: 12px;
+
+            margin-bottom: 11px;
+
+            transition: .2s ease;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding-top: 22px;
+
+            border-top:
+                1px solid
+                var(--border);
+
+            color:
+                #5e7575;
+
+            font-size: 11px;
+        }
+
+        /* =========================
+           MOBILE MENU
+        ========================== */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+
+                position: absolute;
+
+                top: 78px;
+
+                left: 4%;
+
+                right: 4%;
+
+                padding: 20px;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                background:
+                    rgba(8,25,25,.98);
+
+                border:
+                    1px solid
+                    var(--border);
+
+                border-radius: 18px;
+
+                box-shadow:
+                    0 25px 70px
+                    rgba(0,0,0,.35);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-actions {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 70px;
+            }
+
+            .services-grid {
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+            .steps {
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .nav {
+                height: 70px;
+            }
+
+            .hero {
+                padding:
+                    60px 0
+                    45px;
+            }
+
+            .hero h1 {
+                font-size: 45px;
+                letter-spacing: -2.5px;
+            }
+
+            .hero-copy {
+                font-size: 15px;
+            }
+
+            .dashboard-card {
+                padding: 18px;
+                border-radius: 22px;
+            }
+
+            .balance {
+                font-size: 30px;
+            }
+
+            .quick-actions {
+                grid-template-columns:
+                    repeat(3,1fr);
+            }
+
+            section {
+                padding: 70px 0;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-box {
+                padding:
+                    45px 22px;
+            }
+
+            .footer-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+        }
+
+    </style>
 </head>
 
 <body>
 
-```
-<!-- =========================================
+
+<!-- =========================
      HEADER
-========================================== -->
+========================== -->
 
-<header class="main-header">
+<header>
 
-    <div class="container header-inner">
-
-
-        <!-- LOGO -->
+    <div class="container nav">
 
         <a
             href="index.html"
-            class="brand"
+            class="logo"
         >
-
-            <span class="brand-mark">
+            <div class="logo-mark">
                 Q
-            </span>
+            </div>
 
-            <span>
-                Quick<span class="brand-accent">TopUp</span>
-            </span>
-
+            Quick<span>TopUp</span>
         </a>
 
 
-        <!-- NAVIGATION -->
-
-        <nav class="main-nav">
-
-            <a
-                href="index.html"
-                class="active"
-            >
-                Home
-            </a>
+        <nav class="nav-links" id="navLinks">
 
             <a href="#services">
                 Services
@@ -99,20 +1336,18 @@
         </nav>
 
 
-        <!-- HEADER ACTIONS -->
-
-        <div class="header-actions">
+        <div class="nav-actions">
 
             <a
                 href="login.html"
-                class="login-link"
+                class="btn btn-outline"
             >
                 Login
             </a>
 
             <a
                 href="register.html"
-                class="header-button"
+                class="btn btn-primary"
             >
                 Get Started
             </a>
@@ -120,12 +1355,10 @@
         </div>
 
 
-        <!-- MOBILE MENU -->
-
         <button
-            class="mobile-menu-button"
+            class="menu-btn"
+            id="menuBtn"
             type="button"
-            aria-label="Open menu"
         >
             ☰
         </button>
@@ -135,285 +1368,299 @@
 </header>
 
 
-
-<!-- =========================================
+<!-- =========================
      HERO
-========================================== -->
+========================== -->
 
 <main>
 
+<section class="hero">
 
-    <section class="hero">
-
-        <div class="container hero-grid">
-
-
-            <!-- HERO TEXT -->
-
-            <div class="hero-content">
-
-                <div class="hero-badge">
-
-                    <span class="status-dot"></span>
-
-                    Fast & Reliable Digital Services
-
-                </div>
+    <div class="container hero-grid">
 
 
-                <h1>
+        <div>
 
-                    Everything You Need.
-                    <span>
-                        One Simple Platform.
+            <div class="eyebrow">
+
+                <span class="eyebrow-dot"></span>
+
+                Fast & Reliable Digital Services
+
+            </div>
+
+
+            <h1>
+
+                Everything You Need.
+
+                <span>
+                    One Simple Platform.
+                </span>
+
+            </h1>
+
+
+            <p class="hero-copy">
+
+                Buy airtime, get data and fund
+                your wallet quickly — all from
+                one simple and secure platform.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a
+                    href="register.html"
+                    class="btn btn-primary"
+                >
+                    Create Free Account →
+                </a>
+
+                <a
+                    href="#services"
+                    class="btn btn-outline"
+                >
+                    Explore Services
+                </a>
+
+            </div>
+
+
+            <div class="hero-stats">
+
+                <div class="stat">
+
+                    <span class="stat-mark">
+                        ✓
                     </span>
 
-                </h1>
-
-
-                <p class="hero-description">
-
-                    Buy airtime, get data and fund your
-                    wallet quickly — all from one simple
-                    and secure platform.
-
-                </p>
-
-
-                <div class="hero-actions">
-
-                    <a
-                        href="register.html"
-                        class="primary-button"
-                    >
-                        Create Free Account
-                        <span>→</span>
-                    </a>
-
-                    <a
-                        href="#services"
-                        class="secondary-button"
-                    >
-                        Explore Services
-                    </a>
+                    <span>
+                        <strong>Fast</strong>
+                        Transactions
+                    </span>
 
                 </div>
 
 
-                <div class="hero-trust">
+                <div class="stat">
 
-                    <div class="trust-item">
+                    <span class="stat-mark">
+                        ✓
+                    </span>
 
-                        <strong>
-                            Fast
-                        </strong>
+                    <span>
+                        <strong>Secure</strong>
+                        Payments
+                    </span>
 
-                        <span>
-                            Transactions
-                        </span>
-
-                    </div>
-
-
-                    <div class="trust-divider"></div>
+                </div>
 
 
-                    <div class="trust-item">
+                <div class="stat">
 
-                        <strong>
-                            Secure
-                        </strong>
+                    <span class="stat-mark">
+                        ✓
+                    </span>
 
-                        <span>
-                            Payments
-                        </span>
-
-                    </div>
-
-
-                    <div class="trust-divider"></div>
-
-
-                    <div class="trust-item">
-
-                        <strong>
-                            24/7
-                        </strong>
-
-                        <span>
-                            Access
-                        </span>
-
-                    </div>
+                    <span>
+                        <strong>24/7</strong>
+                        Access
+                    </span>
 
                 </div>
 
             </div>
 
+        </div>
 
 
-            <!-- HERO VISUAL -->
+        <!-- HERO DASHBOARD -->
 
-            <div class="hero-visual">
+        <div class="hero-visual">
+
+            <div class="dashboard-card">
 
 
-                <div class="dashboard-preview">
+                <div class="dashboard-top">
 
+                    <div class="mini-brand">
 
-                    <div class="preview-top">
-
-                        <div>
-
-                            <span class="preview-label">
-                                Available Balance
-                            </span>
-
-                            <strong>
-                                ₦48,750.00
-                            </strong>
-
-                        </div>
-
-                        <div class="preview-avatar">
-                            Q
-                        </div>
+                        Quick<span>TopUp</span>
 
                     </div>
 
-
-                    <div class="preview-actions">
-
-                        <div class="preview-action active">
-
-                            <span>
-                                +
-                            </span>
-
-                            <small>
-                                Fund Wallet
-                            </small>
-
-                        </div>
-
-
-                        <div class="preview-action">
-
-                            <span>
-                                ◇
-                            </span>
-
-                            <small>
-                                Buy Data
-                            </small>
-
-                        </div>
-
-
-                        <div class="preview-action">
-
-                            <span>
-                                ◉
-                            </span>
-
-                            <small>
-                                Airtime
-                            </small>
-
-                        </div>
-
+                    <div class="profile">
+                        Q
                     </div>
 
+                </div>
 
-                    <div class="preview-section-title">
 
-                        Recent Activity
+                <div class="balance-card">
 
+                    <div class="balance-label">
+                        Available Balance
                     </div>
 
-
-                    <div class="preview-transaction">
-
-                        <div class="transaction-icon">
-                            ↗
-                        </div>
-
-                        <div class="transaction-info">
-
-                            <strong>
-                                Data Purchase
-                            </strong>
-
-                            <span>
-                                Today, 10:42 AM
-                            </span>
-
-                        </div>
-
-                        <strong class="transaction-amount">
-                            -₦2,500
-                        </strong>
-
+                    <div class="balance">
+                        ₦48,750.00
                     </div>
 
+                </div>
 
-                    <div class="preview-transaction">
 
-                        <div class="transaction-icon green">
+                <div class="quick-actions">
+
+
+                    <a
+                        href="fund-wallet.html"
+                        class="quick-action"
+                    >
+
+                        <div class="quick-icon">
                             +
                         </div>
 
-                        <div class="transaction-info">
+                        Fund Wallet
 
-                            <strong>
-                                Wallet Funding
-                            </strong>
+                    </a>
 
-                            <span>
-                                Yesterday, 6:18 PM
-                            </span>
+
+                    <a
+                        href="buy-data.html"
+                        class="quick-action"
+                    >
+
+                        <div class="quick-icon">
+                            ◇
+                        </div>
+
+                        Buy Data
+
+                    </a>
+
+
+                    <a
+                        href="buy-airtime.html"
+                        class="quick-action"
+                    >
+
+                        <div class="quick-icon">
+                            ◉
+                        </div>
+
+                        Airtime
+
+                    </a>
+
+
+                </div>
+
+
+                <div class="activity">
+
+
+                    <div class="activity-header">
+
+                        <strong>
+                            Recent Activity
+                        </strong>
+
+                        <span>
+                            View all
+                        </span>
+
+                    </div>
+
+
+                    <div class="activity-item">
+
+                        <div class="activity-left">
+
+                            <div class="activity-icon">
+                                ↗
+                            </div>
+
+                            <div class="activity-text">
+
+                                <strong>
+                                    Data Purchase
+                                </strong>
+
+                                <small>
+                                    Today, 10:42 AM
+                                </small>
+
+                            </div>
 
                         </div>
 
-                        <strong class="transaction-amount positive">
+                        <div class="activity-amount">
+                            -₦2,500
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity-item">
+
+                        <div class="activity-left">
+
+                            <div class="activity-icon">
+                                +
+                            </div>
+
+                            <div class="activity-text">
+
+                                <strong>
+                                    Wallet Funding
+                                </strong>
+
+                                <small>
+                                    Yesterday, 6:18 PM
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <div class="activity-amount">
                             +₦10,000
-                        </strong>
+                        </div>
 
                     </div>
 
 
-                </div>
+                    <div class="activity-item">
 
+                        <div class="activity-left">
 
-                <div class="floating-card floating-card-one">
+                            <div class="activity-icon">
+                                ✓
+                            </div>
 
-                    <span class="floating-icon">
-                        ✓
-                    </span>
+                            <div class="activity-text">
 
-                    <div>
+                                <strong>
+                                    Payment Successful
+                                </strong>
 
-                        <strong>
-                            Payment Successful
-                        </strong>
+                                <small>
+                                    Transaction completed
+                                </small>
 
-                        <small>
-                            Transaction completed
-                        </small>
+                            </div>
+
+                        </div>
+
+                        <div class="activity-amount">
+                            ₦10,000
+                        </div>
 
                     </div>
-
-                </div>
-
-
-                <div class="floating-card floating-card-two">
-
-                    <strong>
-                        ₦10,000
-                    </strong>
-
-                    <span>
-                        Wallet funded
-                    </span>
 
                 </div>
 
@@ -422,586 +1669,589 @@
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
+<!-- =========================
+     SERVICES
+========================== -->
 
-    <!-- =========================================
-         SERVICES
-    ========================================== -->
+<section
+    class="services"
+    id="services"
+>
 
-    <section
-        class="services-section"
-        id="services"
-    >
-
-        <div class="container">
+    <div class="container">
 
 
-            <div class="section-heading">
+        <div class="section-head">
+
+            <div class="section-label">
+                Our Services
+            </div>
+
+            <h2>
+                The essentials,
+                made simple.
+            </h2>
+
+            <p>
+                Everything you need for your
+                everyday digital transactions.
+            </p>
+
+        </div>
+
+
+        <div class="services-grid">
+
+
+            <article class="service-card">
 
                 <div>
 
-                    <span class="section-label">
-                        OUR SERVICES
-                    </span>
-
-                    <h2>
-                        The essentials,
-                        made simple.
-                    </h2>
-
-                </div>
-
-
-                <p>
-                    Everything you need for your
-                    everyday digital transactions.
-                </p>
-
-            </div>
-
-
-            <div class="services-grid">
-
-
-                <a
-                    href="buy-airtime.html"
-                    class="service-card"
-                >
-
-                    <div class="service-icon airtime">
-                        ◉
+                    <div class="service-number">
+                        01
                     </div>
 
-                    <span class="service-number">
-                        01
-                    </span>
+                    <div class="service-icon">
+                        ◉
+                    </div>
 
                     <h3>
                         Buy Airtime
                     </h3>
 
                     <p>
-                        Recharge any supported network
-                        quickly and conveniently.
+                        Recharge any supported
+                        network quickly and
+                        conveniently.
                     </p>
 
-                    <span class="service-link">
-                        Buy Airtime →
-                    </span>
-
-                </a>
+                </div>
 
 
                 <a
-                    href="buy-data.html"
-                    class="service-card featured"
+                    href="buy-airtime.html"
+                    class="service-link"
                 >
+                    Buy Airtime →
+                </a>
 
-                    <div class="service-icon data">
-                        ◇
+            </article>
+
+
+            <article class="service-card">
+
+                <div>
+
+                    <div class="service-number">
+                        02
                     </div>
 
-                    <span class="service-number">
-                        02
-                    </span>
+                    <div class="service-icon">
+                        ◇
+                    </div>
 
                     <h3>
                         Buy Data
                     </h3>
 
                     <p>
-                        Stay connected with fast,
-                        affordable data bundles.
+                        Stay connected with
+                        fast, affordable data
+                        bundles.
                     </p>
 
-                    <span class="service-link">
-                        Buy Data →
-                    </span>
-
-                </a>
+                </div>
 
 
                 <a
-                    href="fund-wallet.html"
-                    class="service-card"
+                    href="buy-data.html"
+                    class="service-link"
                 >
+                    Buy Data →
+                </a>
 
-                    <div class="service-icon wallet">
-                        +
+            </article>
+
+
+            <article class="service-card">
+
+                <div>
+
+                    <div class="service-number">
+                        03
                     </div>
 
-                    <span class="service-number">
-                        03
-                    </span>
+                    <div class="service-icon">
+                        +
+                    </div>
 
                     <h3>
                         Fund Wallet
                     </h3>
 
                     <p>
-                        Add money securely and keep
-                        your QuickTopUp wallet ready.
-                    </p>
-
-                    <span class="service-link">
-                        Fund Wallet →
-                    </span>
-
-                </a>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================================
-         HOW IT WORKS
-    ========================================== -->
-
-    <section
-        class="steps-section"
-        id="how-it-works"
-    >
-
-        <div class="container">
-
-
-            <div class="center-heading">
-
-                <span class="section-label">
-                    HOW IT WORKS
-                </span>
-
-                <h2>
-                    From signup to transaction
-                    in minutes.
-                </h2>
-
-                <p>
-                    No complicated process.
-                    Just choose what you need and go.
-                </p>
-
-            </div>
-
-
-            <div class="steps-grid">
-
-
-                <div class="step">
-
-                    <span class="step-number">
-                        01
-                    </span>
-
-                    <h3>
-                        Create an account
-                    </h3>
-
-                    <p>
-                        Sign up in a few seconds and
-                        access your personal dashboard.
-                    </p>
-
-                </div>
-
-
-                <div class="step">
-
-                    <span class="step-number">
-                        02
-                    </span>
-
-                    <h3>
-                        Fund your wallet
-                    </h3>
-
-                    <p>
-                        Add money securely using the
-                        available payment options.
-                    </p>
-
-                </div>
-
-
-                <div class="step">
-
-                    <span class="step-number">
-                        03
-                    </span>
-
-                    <h3>
-                        Choose a service
-                    </h3>
-
-                    <p>
-                        Select airtime or data and
-                        complete your transaction.
-                    </p>
-
-                </div>
-
-
-                <div class="step">
-
-                    <span class="step-number">
-                        04
-                    </span>
-
-                    <h3>
-                        You're done
-                    </h3>
-
-                    <p>
-                        Track your transaction and
-                        keep using QuickTopUp anytime.
-                    </p>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================================
-         WHY US
-    ========================================== -->
-
-    <section
-        class="why-section"
-        id="why-us"
-    >
-
-        <div class="container why-grid">
-
-
-            <div class="why-content">
-
-                <span class="section-label">
-                    WHY QUICKTOPUP
-                </span>
-
-                <h2>
-                    Built around
-                    <span>
-                        your convenience.
-                    </span>
-                </h2>
-
-                <p>
-                    QuickTopUp keeps everyday digital
-                    transactions straightforward,
-                    accessible and easy to manage.
-                </p>
-
-
-                <div class="why-list">
-
-
-                    <div class="why-item">
-
-                        <span>
-                            ✓
-                        </span>
-
-                        <div>
-
-                            <strong>
-                                Simple experience
-                            </strong>
-
-                            <p>
-                                Clear screens and an easy
-                                transaction process.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="why-item">
-
-                        <span>
-                            ✓
-                        </span>
-
-                        <div>
-
-                            <strong>
-                                Secure payments
-                            </strong>
-
-                            <p>
-                                Payments are processed
-                                through trusted infrastructure.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="why-item">
-
-                        <span>
-                            ✓
-                        </span>
-
-                        <div>
-
-                            <strong>
-                                Built for everyday use
-                            </strong>
-
-                            <p>
-                                Access the services you need
-                                without unnecessary steps.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <div class="why-visual">
-
-                <div class="secure-card">
-
-                    <div class="secure-top">
-
-                        <span class="secure-icon">
-                            ✓
-                        </span>
-
-                        <span>
-                            QuickTopUp
-                        </span>
-
-                    </div>
-
-                    <h3>
-                        Your digital
-                        essentials,
-                        simplified.
-                    </h3>
-
-                    <div class="secure-line"></div>
-
-                    <div class="secure-stats">
-
-                        <div>
-
-                            <strong>
-                                24/7
-                            </strong>
-
-                            <span>
-                                Access
-                            </span>
-
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                Fast
-                            </strong>
-
-                            <span>
-                                Processing
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================================
-         CTA
-    ========================================== -->
-
-    <section class="cta-section">
-
-        <div class="container">
-
-            <div class="cta-box">
-
-                <div>
-
-                    <span class="section-label">
-                        GET STARTED
-                    </span>
-
-                    <h2>
-                        Ready to make
-                        transactions easier?
-                    </h2>
-
-                    <p>
-                        Create your QuickTopUp account
-                        and get started today.
+                        Add money securely and
+                        keep your QuickTopUp
+                        wallet ready.
                     </p>
 
                 </div>
 
 
                 <a
-                    href="register.html"
-                    class="primary-button light"
+                    href="fund-wallet.html"
+                    class="service-link"
                 >
-                    Create Free Account
-                    <span>→</span>
+                    Fund Wallet →
                 </a>
 
-            </div>
+            </article>
+
 
         </div>
 
-    </section>
+    </div>
 
-</main>
-
-
-
-<!-- =========================================
-     FOOTER
-========================================== -->
-
-<footer class="main-footer">
-
-    <div class="container footer-grid">
+</section>
 
 
-        <div>
+<!-- =========================
+     HOW IT WORKS
+========================== -->
 
-            <a
-                href="index.html"
-                class="brand footer-brand"
-            >
+<section id="how-it-works">
 
-                <span class="brand-mark">
-                    Q
-                </span>
+    <div class="container">
 
-                <span>
-                    Quick<span class="brand-accent">TopUp</span>
-                </span>
 
-            </a>
+        <div class="section-head">
+
+            <div class="section-label">
+                How It Works
+            </div>
+
+            <h2>
+                From signup to
+                transaction in minutes.
+            </h2>
 
             <p>
-                Simple, reliable digital services
-                for everyday transactions.
+                No complicated process.
+                Just choose what you need
+                and go.
             </p>
 
         </div>
 
 
-        <div>
+        <div class="steps">
 
-            <h4>
-                Platform
-            </h4>
 
-            <a href="#services">
-                Services
-            </a>
+            <div class="step">
 
-            <a href="#how-it-works">
-                How It Works
-            </a>
+                <div class="step-number">
+                    01
+                </div>
 
-            <a href="login.html">
-                Login
-            </a>
+                <h3>
+                    Create an account
+                </h3>
+
+                <p>
+                    Sign up in a few seconds
+                    and access your personal
+                    dashboard.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <h3>
+                    Fund your wallet
+                </h3>
+
+                <p>
+                    Add money securely using
+                    the available payment
+                    options.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <h3>
+                    Choose a service
+                </h3>
+
+                <p>
+                    Select airtime or data
+                    and complete your
+                    transaction.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    04
+                </div>
+
+                <h3>
+                    You're done
+                </h3>
+
+                <p>
+                    Track your transaction
+                    and keep using QuickTopUp
+                    anytime.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     WHY US
+========================== -->
+
+<section id="why-us">
+
+    <div class="container">
+
+
+        <div class="section-head">
+
+            <div class="section-label">
+                Why QuickTopUp
+            </div>
+
+            <h2>
+                Built around
+                your convenience.
+            </h2>
+
+            <p>
+                QuickTopUp keeps everyday
+                digital transactions
+                straightforward, accessible
+                and easy to manage.
+            </p>
 
         </div>
 
 
-        <div>
+        <div class="why-grid">
 
-            <h4>
-                Services
-            </h4>
 
-            <a href="buy-airtime.html">
-                Airtime
-            </a>
+            <div class="why-card">
 
-            <a href="buy-data.html">
-                Data
-            </a>
+                <div class="why-icon">
+                    ✓
+                </div>
 
-            <a href="fund-wallet.html">
-                Fund Wallet
-            </a>
+                <h3>
+                    Simple experience
+                </h3>
+
+                <p>
+                    Clear screens and an easy
+                    transaction process make
+                    everyday tasks straightforward.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    Secure payments
+                </h3>
+
+                <p>
+                    Payments are processed
+                    through trusted payment
+                    infrastructure.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    Built for everyday use
+                </h3>
+
+                <p>
+                    Access the services you
+                    need without unnecessary
+                    steps.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    24
+                </div>
+
+                <h3>
+                    Available anytime
+                </h3>
+
+                <p>
+                    Access your QuickTopUp
+                    account whenever you
+                    need it.
+                </p>
+
+            </div>
+
 
         </div>
 
+    </div>
 
-        <div>
+</section>
 
-            <h4>
-                Account
-            </h4>
 
-            <a href="register.html">
-                Create Account
-            </a>
+<!-- =========================
+     CTA
+========================== -->
 
-            <a href="login.html">
-                Sign In
+<section class="cta">
+
+    <div class="container">
+
+        <div class="cta-box">
+
+            <h2>
+                Ready to make
+                transactions easier?
+            </h2>
+
+            <p>
+                Create your QuickTopUp account
+                and get started today.
+            </p>
+
+            <a
+                href="register.html"
+                class="btn btn-primary"
+            >
+                Create Free Account →
             </a>
 
         </div>
 
     </div>
 
+</section>
 
-    <div class="container footer-bottom">
+</main>
 
-        <p>
-            © 2026 QuickTopUp. All rights reserved.
-        </p>
 
-        <span>
-            Secure digital services
-        </span>
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+    <div class="container">
+
+
+        <div class="footer-grid">
+
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="logo"
+                >
+
+                    <div class="logo-mark">
+                        Q
+                    </div>
+
+                    Quick<span>TopUp</span>
+
+                </a>
+
+                <p>
+                    Simple, reliable digital
+                    services for everyday
+                    transactions.
+                </p>
+
+            </div>
+
+
+            <div class="footer-col">
+
+                <h4>
+                    Platform
+                </h4>
+
+                <a href="#services">
+                    Services
+                </a>
+
+                <a href="#how-it-works">
+                    How It Works
+                </a>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </div>
+
+
+            <div class="footer-col">
+
+                <h4>
+                    Services
+                </h4>
+
+                <a href="buy-airtime.html">
+                    Airtime
+                </a>
+
+                <a href="buy-data.html">
+                    Data
+                </a>
+
+                <a href="fund-wallet.html">
+                    Fund Wallet
+                </a>
+
+            </div>
+
+
+            <div class="footer-col">
+
+                <h4>
+                    Account
+                </h4>
+
+                <a href="register.html">
+                    Create Account
+                </a>
+
+                <a href="login.html">
+                    Sign In
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 QuickTopUp.
+                All rights reserved.
+            </span>
+
+            <span>
+                Secure digital services
+            </span>
+
+        </div>
+
 
     </div>
 
 </footer>
 
 
-<script src="script.js"></script>
-```
+<!-- =========================
+     MOBILE MENU SCRIPT
+========================== -->
+
+<script>
+
+    const menuBtn =
+        document.getElementById("menuBtn");
+
+    const navLinks =
+        document.getElementById("navLinks");
+
+
+    if (menuBtn && navLinks) {
+
+        menuBtn.addEventListener(
+            "click",
+            () => {
+
+                navLinks.classList.toggle(
+                    "active"
+                );
+
+            }
+        );
+
+
+        navLinks
+            .querySelectorAll("a")
+            .forEach(link => {
+
+                link.addEventListener(
+                    "click",
+                    () => {
+
+                        navLinks.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+            });
+
+    }
+
+</script>
+
 
 </body>
-
 </html>
