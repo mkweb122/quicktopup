@@ -20,31 +20,20 @@
             box-sizing: border-box;
         }
 
-
         :root {
-            --teal: #229797;
-            --teal-light: #51caca;
-            --dark: #071313;
-            --card: rgba(15, 29, 29, 0.92);
-            --border: rgba(255,255,255,0.10);
+            --bg: #071414;
+            --card: #0d2020;
+            --card2: #102828;
             --text: #ffffff;
-            --muted: #9aa9a9;
+            --muted: #9eb4b4;
+            --green: #229797;
+            --green-light: #36c2c2;
+            --border: rgba(255,255,255,0.08);
         }
-
 
         body {
 
             min-height: 100vh;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            padding: 25px;
-
-            color: var(--text);
 
             font-family:
                 Arial,
@@ -53,24 +42,28 @@
 
             background:
                 radial-gradient(
-                    circle at 20% 20%,
+                    circle at top left,
                     rgba(34,151,151,0.18),
                     transparent 35%
                 ),
                 radial-gradient(
-                    circle at 80% 80%,
-                    rgba(34,151,151,0.12),
-                    transparent 35%
+                    circle at bottom right,
+                    rgba(34,151,151,0.10),
+                    transparent 30%
                 ),
-                linear-gradient(
-                    135deg,
-                    #040b0b,
-                    #0b1919,
-                    #061010
-                );
+                var(--bg);
+
+            color: var(--text);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
 
         }
-
 
         .page {
 
@@ -78,55 +71,113 @@
 
             max-width: 1050px;
 
+            min-height: 650px;
+
             display: grid;
 
             grid-template-columns:
                 1fr
-                460px;
+                1fr;
 
-            gap: 60px;
+            background:
+                rgba(8,24,24,0.93);
 
-            align-items: center;
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 28px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 35px 90px
+                rgba(0,0,0,0.40);
 
         }
 
-
-        /* =========================================
+        /* ==========================
            LEFT SIDE
-        ========================================= */
+        ========================== */
 
-        .intro {
+        .left {
 
-            padding: 20px;
+            padding: 55px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content:
+                space-between;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(34,151,151,0.20),
+                    transparent 55%
+                ),
+                #091b1b;
 
         }
-
 
         .logo {
 
-            display: inline-block;
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 10px;
 
             color: white;
 
             text-decoration: none;
 
-            font-size: 26px;
+            font-size: 25px;
+
+            font-weight: 800;
+
+        }
+
+        .logo-mark {
+
+            width: 38px;
+            height: 38px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--green-light),
+                    var(--green)
+                );
 
             font-weight: 900;
 
-            letter-spacing: -1px;
-
-            margin-bottom: 35px;
+            box-shadow:
+                0 10px 25px
+                rgba(34,151,151,0.25);
 
         }
-
 
         .logo span {
-
-            color: var(--teal-light);
-
+            color:
+                var(--green-light);
         }
 
+        .left-content {
+
+            max-width: 440px;
+
+            margin:
+                50px 0;
+
+        }
 
         .badge {
 
@@ -136,361 +187,297 @@
 
             gap: 8px;
 
-            padding: 8px 13px;
+            padding:
+                9px 14px;
 
-            border-radius: 30px;
+            border-radius: 999px;
 
-            border: 1px solid
-                rgba(34,151,151,0.30);
+            color:
+                #a8eeee;
 
             background:
-                rgba(34,151,151,0.08);
+                rgba(34,151,151,0.12);
 
-            color: #9de4e4;
+            border:
+                1px solid
+                rgba(54,194,194,0.18);
 
-            font-size: 12px;
+            font-size: 13px;
 
             font-weight: 700;
+
+            margin-bottom: 24px;
+
+        }
+
+        .dot {
+
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background:
+                var(--green-light);
+
+            box-shadow:
+                0 0 14px
+                rgba(54,194,194,.9);
+
+        }
+
+        .left h1 {
+
+            font-size:
+                clamp(
+                    40px,
+                    5vw,
+                    62px
+                );
+
+            line-height: 1.02;
+
+            letter-spacing:
+                -2.5px;
 
             margin-bottom: 22px;
 
         }
 
+        .left h1 span {
 
-        .badge-dot {
-
-            width: 7px;
-
-            height: 7px;
-
-            border-radius: 50%;
-
-            background: var(--teal);
-
-            box-shadow:
-                0 0 12px var(--teal);
+            color:
+                var(--green-light);
 
         }
 
+        .left p {
 
-        .intro h1 {
-
-            font-size:
-                clamp(42px, 6vw, 72px);
-
-            line-height: 0.98;
-
-            letter-spacing: -4px;
-
-            margin-bottom: 25px;
-
-        }
-
-
-        .intro h1 span {
-
-            color: var(--teal-light);
-
-        }
-
-
-        .intro p {
-
-            max-width: 520px;
-
-            color: var(--muted);
+            color:
+                var(--muted);
 
             font-size: 16px;
 
-            line-height: 1.8;
+            line-height: 1.75;
 
         }
 
-
-        .features {
+        .feature-list {
 
             display: grid;
 
-            grid-template-columns:
-                repeat(2, 1fr);
-
             gap: 14px;
 
-            margin-top: 35px;
-
-            max-width: 500px;
+            margin-top: 30px;
 
         }
-
 
         .feature {
 
-            padding: 16px;
+            display: flex;
 
-            border:
-                1px solid var(--border);
+            align-items: center;
+
+            gap: 12px;
+
+            color:
+                #d8e8e8;
+
+            font-size: 14px;
+
+        }
+
+        .feature-icon {
+
+            width: 33px;
+            height: 33px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 9px;
 
             background:
-                rgba(255,255,255,0.03);
+                rgba(34,151,151,0.13);
 
-            border-radius: 14px;
+            color:
+                var(--green-light);
 
-        }
-
-
-        .feature strong {
-
-            display: block;
-
-            font-size: 13px;
-
-            margin-bottom: 5px;
+            font-weight: 800;
 
         }
 
+        .copyright {
 
-        .feature span {
-
-            color: #728181;
+            color:
+                #698080;
 
             font-size: 11px;
 
-            line-height: 1.4;
+        }
+
+        /* ==========================
+           RIGHT SIDE
+        ========================== */
+
+        .right {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 55px;
 
         }
 
+        .form-box {
 
-        /* =========================================
-           LOGIN CARD
-        ========================================= */
+            width: 100%;
 
-        .login-card {
-
-            position: relative;
-
-            padding: 34px;
-
-            border:
-                1px solid var(--border);
-
-            background: var(--card);
-
-            border-radius: 24px;
-
-            box-shadow:
-                0 30px 80px
-                rgba(0,0,0,0.45);
-
-            backdrop-filter: blur(18px);
+            max-width: 410px;
 
         }
 
-
-        .login-card::before {
-
-            content: "";
-
-            position: absolute;
-
-            width: 130px;
-
-            height: 130px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(34,151,151,0.16);
-
-            filter: blur(45px);
-
-            top: -40px;
-
-            right: -30px;
-
-            pointer-events: none;
-
-        }
-
-
-        .login-top {
+        .header {
 
             margin-bottom: 28px;
 
         }
 
+        .header h2 {
 
-        .login-top h2 {
+            font-size: 35px;
 
-            font-size: 30px;
+            letter-spacing:
+                -1.3px;
 
-            margin-bottom: 8px;
+            margin-bottom: 9px;
 
         }
 
+        .header p {
 
-        .login-top p {
+            color:
+                var(--muted);
 
-            color: var(--muted);
-
-            font-size: 13px;
+            font-size: 14px;
 
             line-height: 1.6;
 
         }
 
-
         .form-group {
 
-            margin-bottom: 20px;
+            margin-bottom: 18px;
 
         }
 
-
-        .form-group label {
+        label {
 
             display: block;
 
-            margin-bottom: 9px;
+            margin-bottom: 8px;
 
             font-size: 13px;
 
             font-weight: 700;
 
-        }
-
-
-        .input-wrap {
-
-            position: relative;
+            color:
+                #dceaea;
 
         }
 
-
-        .input-icon {
-
-            position: absolute;
-
-            left: 15px;
-
-            top: 50%;
-
-            transform:
-                translateY(-50%);
-
-            color: #668080;
-
-            font-size: 15px;
-
-            pointer-events: none;
-
-        }
-
-
-        .input {
+        input {
 
             width: 100%;
 
+            height: 55px;
+
             padding:
-                15px
-                15px
-                15px
-                42px;
+                0 16px;
 
             border:
                 1px solid
-                rgba(255,255,255,0.12);
+                var(--border);
 
-            border-radius: 12px;
+            border-radius: 14px;
 
             background:
-                rgba(0,0,0,0.22);
+                var(--card);
 
             color: white;
 
-            font-size: 15px;
-
             outline: none;
 
+            font-size: 15px;
+
             transition:
-                border-color 0.2s ease,
-                box-shadow 0.2s ease;
+                .2s ease;
 
         }
 
-
-        .input::placeholder {
-
-            color: #596767;
-
+        input::placeholder {
+            color:
+                #607575;
         }
 
-
-        .input:focus {
+        input:focus {
 
             border-color:
-                var(--teal);
+                var(--green);
 
             box-shadow:
-                0 0 0 3px
+                0 0 0 4px
                 rgba(34,151,151,0.10);
 
         }
 
-
-        .password-row {
+        .forgot {
 
             display: flex;
 
             justify-content:
-                space-between;
+                flex-end;
 
-            align-items: center;
+            margin-top: -8px;
 
-            margin-bottom: 9px;
-
-        }
-
-
-        .password-row label {
-
-            margin-bottom: 0;
+            margin-bottom: 20px;
 
         }
 
+        .forgot a {
 
-        .forgot-link {
+            color:
+                #8fd9d9;
 
-            color: var(--teal-light);
+            font-size: 12px;
 
             text-decoration: none;
 
-            font-size: 11px;
-
         }
 
-
-        .forgot-link:hover {
-
-            color: white;
-
+        .forgot a:hover {
+            text-decoration: underline;
         }
 
-
-        .login-button {
+        .login-btn {
 
             width: 100%;
 
-            padding: 16px;
+            height: 55px;
 
             border: none;
 
-            border-radius: 12px;
+            border-radius: 14px;
 
             background:
                 linear-gradient(
                     135deg,
-                    #229797,
-                    #2ab2b2
+                    var(--green-light),
+                    var(--green)
                 );
 
             color: white;
@@ -501,26 +488,30 @@
 
             cursor: pointer;
 
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
+            box-shadow:
+                0 13px 30px
+                rgba(34,151,151,0.22);
 
-            margin-top: 5px;
+            transition:
+                .2s ease;
 
         }
 
-
-        .login-button:hover {
+        .login-btn:hover {
 
             transform:
                 translateY(-2px);
 
             box-shadow:
-                0 15px 30px
-                rgba(34,151,151,0.20);
+                0 18px 36px
+                rgba(34,151,151,0.30);
 
         }
 
+        .login-btn:active {
+            transform:
+                translateY(0);
+        }
 
         .divider {
 
@@ -531,18 +522,14 @@
             gap: 12px;
 
             margin:
-                25px 0;
+                24px 0;
 
-            color: #5f6f6f;
+            color:
+                #637878;
 
-            font-size: 10px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1px;
+            font-size: 11px;
 
         }
-
 
         .divider::before,
         .divider::after {
@@ -554,150 +541,126 @@
             flex: 1;
 
             background:
-                rgba(255,255,255,0.08);
+                var(--border);
 
         }
 
-
-        .register-text {
+        .signup {
 
             text-align: center;
 
-            color: var(--muted);
+            color:
+                #819595;
 
-            font-size: 12px;
+            font-size: 13px;
 
         }
 
+        .signup a {
 
-        .register-text a {
-
-            color: var(--teal-light);
-
-            text-decoration: none;
+            color:
+                #99dfdf;
 
             font-weight: 700;
 
-        }
-
-
-        .register-text a:hover {
-
-            color: white;
+            text-decoration: none;
 
         }
 
+        .signup a:hover {
+            text-decoration: underline;
+        }
 
-        .back-home {
+        .back {
 
             display: block;
 
             text-align: center;
 
-            margin-top: 20px;
+            margin-top: 18px;
 
-            color: #758484;
+            color:
+                #687f7f;
+
+            font-size: 12px;
 
             text-decoration: none;
 
-            font-size: 11px;
-
         }
 
-
-        .back-home:hover {
-
+        .back:hover {
             color: white;
-
         }
 
-
-        /* =========================================
+        /* ==========================
            MOBILE
-        ========================================= */
+        ========================== */
 
         @media (max-width: 850px) {
 
-            body {
-
-                padding: 18px;
-
-            }
-
-
             .page {
 
-                grid-template-columns: 1fr;
+                grid-template-columns:
+                    1fr;
 
-                gap: 25px;
-
-                max-width: 520px;
-
-            }
-
-
-            .intro {
-
-                text-align: center;
-
-                padding: 0;
+                max-width: 600px;
 
             }
 
+            .left {
 
-            .logo {
-
-                margin-bottom: 20px;
-
-            }
-
-
-            .intro h1 {
-
-                letter-spacing: -3px;
+                padding: 35px;
 
             }
 
-
-            .intro p {
+            .left-content {
 
                 margin:
-                    0 auto;
+                    45px 0;
 
             }
 
+            .right {
 
-            .features {
-
-                margin:
-                    25px auto 0;
+                padding: 35px;
 
             }
 
         }
 
-
         @media (max-width: 500px) {
 
-            .login-card {
+            body {
 
-                padding: 24px;
+                padding: 10px;
+
+            }
+
+            .page {
 
                 border-radius: 20px;
 
             }
 
+            .left,
+            .right {
 
-            .features {
-
-                grid-template-columns: 1fr;
+                padding:
+                    25px 20px;
 
             }
 
+            .left h1 {
 
-            .intro h1 {
+                font-size:
+                    38px;
 
-                font-size: 42px;
+            }
+
+            .header h2 {
+
+                font-size:
+                    29px;
 
             }
 
@@ -711,201 +674,190 @@
 <body>
 
 
-    <div class="page">
+<div class="page">
 
 
-        <!-- =========================================
-             LEFT SIDE
-        ========================================== -->
+    <!-- ======================
+         LEFT
+    ======================= -->
 
-        <div class="intro">
+    <section class="left">
 
-            <a
-                href="index.html"
-                class="logo"
-            >
-                Quick<span>TopUp</span>
-            </a>
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+
+            <div class="logo-mark">
+                Q
+            </div>
+
+            Quick<span>TopUp</span>
+
+        </a>
+
+
+        <div class="left-content">
 
 
             <div class="badge">
 
-                <span class="badge-dot"></span>
+                <span class="dot"></span>
 
-                Fast & Easy Recharge
+                Welcome Back
 
             </div>
 
 
             <h1>
 
-                Welcome
-
-                <span>Back.</span>
+                Your digital
+                services,
+                <span>simplified.</span>
 
             </h1>
 
 
             <p>
 
-                Login to your QuickTopUp account
-                to manage your wallet, MTN data
-                and transactions from one place.
+                Sign in to your QuickTopUp
+                account to manage your wallet,
+                fund your account and access
+                your digital services.
 
             </p>
 
 
-            <div class="features">
+            <div class="feature-list">
 
 
                 <div class="feature">
 
-                    <strong>
-                        Secure Wallet
-                    </strong>
+                    <div class="feature-icon">
+                        ✓
+                    </div>
 
-                    <span>
-                        Fund your wallet and
-                        manage your balance.
-                    </span>
+                    Secure account access
 
                 </div>
 
 
                 <div class="feature">
 
-                    <strong>
-                        MTN Data
-                    </strong>
+                    <div class="feature-icon">
+                        ₦
+                    </div>
 
-                    <span>
-                        Buy MTN data directly
-                        from your wallet.
-                    </span>
+                    Manage your wallet
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ◇
+                    </div>
+
+                    Buy MTN data easily
 
                 </div>
 
 
             </div>
 
+
         </div>
 
 
-        <!-- =========================================
-             LOGIN CARD
-        ========================================== -->
+        <div class="copyright">
 
-        <div class="login-card">
+            © 2026 QuickTopUp.
+            All rights reserved.
+
+        </div>
 
 
-            <div class="login-top">
+    </section>
+
+
+    <!-- ======================
+         RIGHT
+    ======================= -->
+
+    <section class="right">
+
+
+        <div class="form-box">
+
+
+            <div class="header">
 
                 <h2>
-                    Sign In
+                    Welcome Back
                 </h2>
 
                 <p>
-                    Enter your account details
-                    to continue.
+                    Login to your QuickTopUp
+                    account to continue.
                 </p>
 
             </div>
 
 
-            <form
-                id="login-form"
-            >
+            <!-- IMPORTANT:
+                 IDs MUST match script.js -->
 
+            <form id="loginForm">
 
-                <!-- EMAIL -->
 
                 <div class="form-group">
 
-                    <label
-                        for="login-email"
-                    >
+                    <label for="loginEmail">
                         Email Address
                     </label>
 
-
-                    <div class="input-wrap">
-
-                        <span
-                            class="input-icon"
-                        >
-                            ✉
-                        </span>
-
-
-                        <input
-                            type="email"
-                            id="login-email"
-                            class="input"
-                            placeholder="you@example.com"
-                            autocomplete="email"
-                            required
-                        >
-
-                    </div>
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
 
                 </div>
 
-
-                <!-- PASSWORD -->
 
                 <div class="form-group">
 
-                    <div class="password-row">
+                    <label for="loginPassword">
+                        Password
+                    </label>
 
-                        <label
-                            for="login-password"
-                        >
-                            Password
-                        </label>
-
-
-                        <a
-                            href="#"
-                            class="forgot-link"
-                            onclick="
-                                alert('Password reset will be added soon.');
-                                return false;
-                            "
-                        >
-                            Forgot password?
-                        </a>
-
-                    </div>
-
-
-                    <div class="input-wrap">
-
-                        <span
-                            class="input-icon"
-                        >
-                            ●
-                        </span>
-
-
-                        <input
-                            type="password"
-                            id="login-password"
-                            class="input"
-                            placeholder="Enter your password"
-                            autocomplete="current-password"
-                            required
-                        >
-
-                    </div>
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
 
                 </div>
 
 
-                <!-- BUTTON -->
+                <div class="forgot">
+
+                    <a href="#">
+                        Forgot password?
+                    </a>
+
+                </div>
+
 
                 <button
                     type="submit"
-                    class="login-button"
+                    class="login-btn"
                 >
                     Login
                 </button>
@@ -919,13 +871,11 @@
             </div>
 
 
-            <div class="register-text">
+            <div class="signup">
 
                 Don't have an account?
 
-                <a
-                    href="register.html"
-                >
+                <a href="register.html">
                     Create Account
                 </a>
 
@@ -934,7 +884,7 @@
 
             <a
                 href="index.html"
-                class="back-home"
+                class="back"
             >
                 ← Back to homepage
             </a>
@@ -943,12 +893,16 @@
         </div>
 
 
-    </div>
+    </section>
 
 
-    <!-- KEEP YOUR EXISTING JAVASCRIPT -->
+</div>
 
-    <script src="script.js"></script>
+
+<!-- YOUR EXISTING JAVASCRIPT -->
+
+<script src="script.js"></script>
+
 
 </body>
 
