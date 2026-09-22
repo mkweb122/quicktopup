@@ -23,11 +23,10 @@
         :root {
             --bg: #071414;
             --card: #0d2020;
-            --card2: #102828;
-            --text: #ffffff;
-            --muted: #9eb4b4;
             --green: #229797;
             --green-light: #36c2c2;
+            --text: #ffffff;
+            --muted: #9eb4b4;
             --border: rgba(255,255,255,0.08);
         }
 
@@ -71,20 +70,16 @@
 
             max-width: 1050px;
 
-            min-height: 650px;
-
             display: grid;
 
             grid-template-columns:
-                1fr
-                1fr;
+                1fr 1fr;
 
             background:
-                rgba(8,24,24,0.93);
+                rgba(8,24,24,0.95);
 
             border:
-                1px solid
-                var(--border);
+                1px solid var(--border);
 
             border-radius: 28px;
 
@@ -92,7 +87,7 @@
 
             box-shadow:
                 0 35px 90px
-                rgba(0,0,0,0.40);
+                rgba(0,0,0,0.42);
 
         }
 
@@ -123,7 +118,7 @@
 
         .logo {
 
-            display: inline-flex;
+            display: flex;
 
             align-items: center;
 
@@ -157,6 +152,8 @@
                     var(--green)
                 );
 
+            color: white;
+
             font-weight: 900;
 
             box-shadow:
@@ -166,8 +163,7 @@
         }
 
         .logo span {
-            color:
-                var(--green-light);
+            color: var(--green-light);
         }
 
         .left-content {
@@ -175,7 +171,7 @@
             max-width: 440px;
 
             margin:
-                50px 0;
+                55px 0;
 
         }
 
@@ -190,10 +186,8 @@
             padding:
                 9px 14px;
 
-            border-radius: 999px;
-
-            color:
-                #a8eeee;
+            border-radius:
+                999px;
 
             background:
                 rgba(34,151,151,0.12);
@@ -201,6 +195,9 @@
             border:
                 1px solid
                 rgba(54,194,194,0.18);
+
+            color:
+                #a8eeee;
 
             font-size: 13px;
 
@@ -262,13 +259,13 @@
 
         }
 
-        .feature-list {
+        .features {
 
             display: grid;
 
             gap: 14px;
 
-            margin-top: 30px;
+            margin-top: 32px;
 
         }
 
@@ -281,7 +278,7 @@
             gap: 12px;
 
             color:
-                #d8e8e8;
+                #dceaea;
 
             font-size: 14px;
 
@@ -289,17 +286,17 @@
 
         .feature-icon {
 
-            width: 33px;
-            height: 33px;
+            width: 34px;
+            height: 34px;
 
             display: grid;
 
             place-items: center;
 
-            border-radius: 9px;
+            border-radius: 10px;
 
             background:
-                rgba(34,151,151,0.13);
+                rgba(34,151,151,.13);
 
             color:
                 var(--green-light);
@@ -311,7 +308,7 @@
         .copyright {
 
             color:
-                #698080;
+                #6b8181;
 
             font-size: 11px;
 
@@ -323,13 +320,13 @@
 
         .right {
 
+            padding: 55px;
+
             display: flex;
 
             align-items: center;
 
             justify-content: center;
-
-            padding: 55px;
 
         }
 
@@ -341,24 +338,24 @@
 
         }
 
-        .header {
+        .form-header {
 
             margin-bottom: 28px;
 
         }
 
-        .header h2 {
+        .form-header h2 {
 
-            font-size: 35px;
+            font-size: 34px;
 
             letter-spacing:
-                -1.3px;
+                -1.2px;
 
             margin-bottom: 9px;
 
         }
 
-        .header p {
+        .form-header p {
 
             color:
                 var(--muted);
@@ -375,22 +372,22 @@
 
         }
 
-        label {
+        .form-group label {
 
             display: block;
 
             margin-bottom: 8px;
 
+            color:
+                #dceaea;
+
             font-size: 13px;
 
             font-weight: 700;
 
-            color:
-                #dceaea;
-
         }
 
-        input {
+        .form-group input {
 
             width: 100%;
 
@@ -419,12 +416,14 @@
 
         }
 
-        input::placeholder {
+        .form-group input::placeholder {
+
             color:
                 #607575;
+
         }
 
-        input:focus {
+        .form-group input:focus {
 
             border-color:
                 var(--green);
@@ -442,7 +441,7 @@
             justify-content:
                 flex-end;
 
-            margin-top: -8px;
+            margin-top: -6px;
 
             margin-bottom: 20px;
 
@@ -451,7 +450,7 @@
         .forgot a {
 
             color:
-                #8fd9d9;
+                #98dede;
 
             font-size: 12px;
 
@@ -460,7 +459,10 @@
         }
 
         .forgot a:hover {
-            text-decoration: underline;
+
+            text-decoration:
+                underline;
+
         }
 
         .login-btn {
@@ -503,14 +505,49 @@
                 translateY(-2px);
 
             box-shadow:
-                0 18px 36px
+                0 18px 38px
                 rgba(34,151,151,0.30);
 
         }
 
-        .login-btn:active {
-            transform:
-                translateY(0);
+        .message {
+
+            display: none;
+
+            margin-top: 14px;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            font-size: 12px;
+
+            text-align: center;
+
+        }
+
+        .message.error {
+
+            display: block;
+
+            background:
+                rgba(255,80,80,.10);
+
+            color:
+                #ff8a8a;
+
+        }
+
+        .message.success {
+
+            display: block;
+
+            background:
+                rgba(54,194,194,.10);
+
+            color:
+                #7ee5d1;
+
         }
 
         .divider {
@@ -568,7 +605,10 @@
         }
 
         .signup a:hover {
-            text-decoration: underline;
+
+            text-decoration:
+                underline;
+
         }
 
         .back {
@@ -589,7 +629,9 @@
         }
 
         .back:hover {
+
             color: white;
+
         }
 
         /* ==========================
@@ -603,26 +645,22 @@
                 grid-template-columns:
                     1fr;
 
-                max-width: 600px;
+                max-width:
+                    600px;
 
             }
 
             .left {
 
-                padding: 35px;
-
-            }
-
-            .left-content {
-
-                margin:
-                    45px 0;
+                padding:
+                    35px;
 
             }
 
             .right {
 
-                padding: 35px;
+                padding:
+                    35px;
 
             }
 
@@ -657,7 +695,7 @@
 
             }
 
-            .header h2 {
+            .form-header h2 {
 
                 font-size:
                     29px;
@@ -677,9 +715,9 @@
 <div class="page">
 
 
-    <!-- ======================
+    <!-- =====================
          LEFT
-    ======================= -->
+    ====================== -->
 
     <section class="left">
 
@@ -722,14 +760,13 @@
             <p>
 
                 Sign in to your QuickTopUp
-                account to manage your wallet,
-                fund your account and access
-                your digital services.
+                account and manage your wallet,
+                transactions and digital services.
 
             </p>
 
 
-            <div class="feature-list">
+            <div class="features">
 
 
                 <div class="feature">
@@ -782,9 +819,9 @@
     </section>
 
 
-    <!-- ======================
+    <!-- =====================
          RIGHT
-    ======================= -->
+    ====================== -->
 
     <section class="right">
 
@@ -792,7 +829,7 @@
         <div class="form-box">
 
 
-            <div class="header">
+            <div class="form-header">
 
                 <h2>
                     Welcome Back
@@ -806,10 +843,10 @@
             </div>
 
 
-            <!-- IMPORTANT:
-                 IDs MUST match script.js -->
-
-            <form id="loginForm">
+            <form
+                id="loginForm"
+                novalidate
+            >
 
 
                 <div class="form-group">
@@ -823,7 +860,6 @@
                         id="loginEmail"
                         placeholder="you@example.com"
                         autocomplete="email"
-                        required
                     >
 
                 </div>
@@ -840,7 +876,6 @@
                         id="loginPassword"
                         placeholder="Enter your password"
                         autocomplete="current-password"
-                        required
                     >
 
                 </div>
@@ -861,6 +896,12 @@
                 >
                     Login
                 </button>
+
+
+                <div
+                    id="loginMessage"
+                    class="message"
+                ></div>
 
 
             </form>
@@ -892,16 +933,161 @@
 
         </div>
 
-
     </section>
-
 
 </div>
 
 
-<!-- YOUR EXISTING JAVASCRIPT -->
+<!-- ==========================
+     INDEPENDENT LOGIN SCRIPT
+========================== -->
 
-<script src="script.js"></script>
+<script>
+
+document
+    .getElementById("loginForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const email =
+                document
+                    .getElementById("loginEmail")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            const password =
+                document
+                    .getElementById("loginPassword")
+                    .value
+                    .trim();
+
+
+            const message =
+                document
+                    .getElementById("loginMessage");
+
+
+            function showError(text) {
+
+                message.textContent =
+                    text;
+
+                message.className =
+                    "message error";
+            }
+
+
+            function showSuccess(text) {
+
+                message.textContent =
+                    text;
+
+                message.className =
+                    "message success";
+            }
+
+
+            if (!email || !password) {
+
+                showError(
+                    "Please enter your email and password."
+                );
+
+                return;
+            }
+
+
+            if (
+                !/^\S+@\S+\.\S+$/.test(
+                    email
+                )
+            ) {
+
+                showError(
+                    "Please enter a valid email address."
+                );
+
+                return;
+            }
+
+
+            let users = [];
+
+
+            try {
+
+                users =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "quickTopUpUsers"
+                        ) || "[]"
+                    );
+
+            } catch (error) {
+
+                users = [];
+
+            }
+
+
+            const user =
+                users.find(
+                    item =>
+
+                        String(
+                            item.email
+                        )
+                            .toLowerCase() ===
+                        email &&
+
+                        String(
+                            item.password
+                        ) ===
+                        password
+                );
+
+
+            if (!user) {
+
+                showError(
+                    "Incorrect email or password."
+                );
+
+                return;
+            }
+
+
+            localStorage.setItem(
+                "quickTopUpCurrentUser",
+                JSON.stringify(user)
+            );
+
+
+            showSuccess(
+                "Login successful!"
+            );
+
+
+            setTimeout(
+                function() {
+
+                    window.location.href =
+                        "dashboard.html";
+
+                },
+                600
+            );
+
+        }
+    );
+
+</script>
 
 
 </body>
